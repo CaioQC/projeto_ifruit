@@ -14,10 +14,19 @@ import { PedidoModule } from './pedido/pedido.module';
 import { PagamentoModule } from './pagamento/pagamento.module';
 import { HistoricoCompraModule } from './historico-compra/historico-compra.module';
 import { StatusModule } from './status/status.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [ClienteModule, EnderecoModule, CarrinhoModule, ItensCarrinhoModule, ProdutoModule, LojaModule, AvaliacaoModule, FavoritosModule, EntregadorModule, PedidoModule, PagamentoModule, HistoricoCompraModule, StatusModule],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'db.sqlite',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      synchronize: true,
+    }),
+    ClienteModule, EnderecoModule, CarrinhoModule, ItensCarrinhoModule, ProdutoModule, LojaModule, AvaliacaoModule, FavoritosModule, EntregadorModule, PedidoModule, PagamentoModule, HistoricoCompraModule, StatusModule],
   controllers: [AppController],
   providers: [AppService],
+
 })
-export class AppModule {}
+export class AppModule { }

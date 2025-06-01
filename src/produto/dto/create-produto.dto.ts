@@ -1,4 +1,6 @@
 import { IsString, IsNumber, IsPositive, IsInt } from 'class-validator';
+import { Loja } from 'src/loja/entities/loja.entity';
+import { ManyToOne } from 'typeorm';
 
 export class CreateProdutoDto {
     @IsString()
@@ -17,4 +19,9 @@ export class CreateProdutoDto {
 
     @IsString()
     categoria: string;
+
+    @IsNumber()
+    id_loja: number
+
+
 }

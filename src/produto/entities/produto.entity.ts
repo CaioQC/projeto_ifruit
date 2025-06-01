@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Loja } from 'src/loja/entities/loja.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Produto {
@@ -19,4 +20,11 @@ export class Produto {
 
     @Column()
     categoria: string;
+
+    @ManyToOne(() => Loja, (loja) => loja.produtos, {
+        onDelete: 'CASCADE',
+        eager: true,
+    })
+    loja: Loja;
+    static loja: any;
 }

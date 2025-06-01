@@ -1,9 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Produto } from 'src/produto/entities/produto.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity()
 export class Loja {
     @PrimaryGeneratedColumn()
-    id: number;
+    id_Loja: number;
 
     @Column()
     nome: string;
@@ -22,4 +23,7 @@ export class Loja {
 
     @Column()
     dados_bancarios: string;
+
+    @OneToMany(() => Produto, (produto) => Produto.loja)
+    produtos: Produto[];
 }
