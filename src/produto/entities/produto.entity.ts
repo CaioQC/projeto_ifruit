@@ -1,5 +1,6 @@
+import { ItensCarrinho } from 'src/itens-carrinho/entities/itens-carrinho.entity';
 import { Loja } from 'src/loja/entities/loja.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity()
 export class Produto {
@@ -27,4 +28,8 @@ export class Produto {
     })
     loja: Loja;
     static loja: any;
+
+    @OneToMany(() => ItensCarrinho, (itensCarrinho) => itensCarrinho.produto)
+    itens: ItensCarrinho
+
 }

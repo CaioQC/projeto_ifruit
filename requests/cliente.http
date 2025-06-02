@@ -1,0 +1,16 @@
+### Listar clientes
+GET http://localhost:3000/cliente
+
+### Listar clientes 
+GET http://localhost:3000/cliente/1
+
+###Criar cliente
+POST http://localhost:3000/cliente
+Content-Type: application/json
+
+### Atualizar um cliente
+PATCH http://localhost:3000/cliente/1
+Content-Type: application/json
+
+### Deletar um cliente
+DELETE http://localhost:3000/cliente/1

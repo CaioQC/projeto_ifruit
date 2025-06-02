@@ -8,7 +8,7 @@ export class CreateClienteDto {
     email: string
 
     @IsPhoneNumber()
-    phone: string
+    telefone: string
 
     @IsString()
     senha: string

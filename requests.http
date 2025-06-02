@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
   "nome": "Loja da ana julia",
-    "endereco": "endereco ficticio",
+  "endereco": "endereco ficticio",
   "email": "ana@gmail",
   "telefone":"982643446",
   "senha":"123",

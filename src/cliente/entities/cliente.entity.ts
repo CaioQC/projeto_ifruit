@@ -1,4 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Carrinho } from 'src/carrinho/entities/carrinho.entity';
+import { HistoricoCompra } from 'src/historico-compra/entities/historico-compra.entity';
+import { Pedido } from 'src/pedido/entities/pedido.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from 'typeorm';
 
 @Entity()
 export class Cliente {
@@ -16,4 +19,13 @@ export class Cliente {
 
     @Column()
     senha: string
+
+    @OneToMany(() => Carrinho, (carrinho) => carrinho.cliente)
+    carrinhos: Carrinho[]
+
+    @OneToMany(() => Pedido, (pedido) => pedido.cliente)
+    pedidos: Pedido[]
+
+    @OneToOne(() => HistoricoCompra, (historicoCompra) => historicoCompra.cliente)
+    historicoCompra: HistoricoCompra
 }

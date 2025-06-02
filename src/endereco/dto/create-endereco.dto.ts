@@ -19,4 +19,3 @@ export class CreateEnderecoDto {
     @IsString()
     cep: string
 }
-

@@ -1,9 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Status } from 'src/status/entities/status.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Pagamento {
     @PrimaryGeneratedColumn()
-    id: number;
+    id_pagamento: number;
 
     @Column()
     metodo_pagamento: string;
@@ -13,4 +14,8 @@ export class Pagamento {
 
     @Column({ type: 'date' })
     data_pagamento: string;
+
+    @ManyToOne(() => Status, (status) => status.pagamentos)
+    status: Status
+    
 }
