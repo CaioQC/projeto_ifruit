@@ -1,9 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Cliente } from 'src/cliente/entities/cliente.entity';
+import { Produto } from 'src/produto/entities/produto.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Avaliacao {
     @PrimaryGeneratedColumn()
-    id: number;
+    id_avaliacao: number;
+
+    @ManyToOne(() => Produto, (produto) => produto.avaliacoes)
+    produto: Produto
+
+    @ManyToOne(() => Cliente, (cliente) => cliente.avaliacoes)
+    cliente: Cliente
 
     @Column()
     descricao: string;

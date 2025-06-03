@@ -1,4 +1,6 @@
+import { Avaliacao } from 'src/avaliacao/entities/avaliacao.entity';
 import { Carrinho } from 'src/carrinho/entities/carrinho.entity';
+import { Favorito } from 'src/favoritos/entities/favorito.entity';
 import { HistoricoCompra } from 'src/historico-compra/entities/historico-compra.entity';
 import { Pedido } from 'src/pedido/entities/pedido.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from 'typeorm';
@@ -28,4 +30,10 @@ export class Cliente {
 
     @OneToOne(() => HistoricoCompra, (historicoCompra) => historicoCompra.cliente)
     historicoCompra: HistoricoCompra
+
+    @OneToMany(() => Avaliacao, (avaliacoes) => avaliacoes.cliente)
+    avaliacoes: Avaliacao[]
+
+    @OneToMany(() => Favorito, (favoritos) => favoritos.cliente)
+    favoritos: Favorito[]
 }
