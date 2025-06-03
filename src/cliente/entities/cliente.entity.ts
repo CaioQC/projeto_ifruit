@@ -8,7 +8,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from 'typ
 @Entity()
 export class Cliente {
     @PrimaryGeneratedColumn()
-    id: number;
+    idCliente: number;
 
     @Column()
     nome: string;
