@@ -1,0 +1,31 @@
+### Listar lojas
+GET http://localhost:3000/loja
+
+###Criar loja
+POST http://localhost:3000/loja
+Content-Type: application/json
+
+{
+  "nome": "Loja da ana julia",
+  "endereco": "endereco ficticio",
+  "email": "ana@gmail",
+  "telefone":"982643446",
+  "senha":"123",
+  "dados_bancarios":"02954349107"
+}
+
+### Atualizar loja
+PATCH http://localhost:3000/loja/1
+Content-Type: application/json
+
+{
+  "nome": "Loja do Filipi",
+  "endereco":"Qs7 areal",
+  "email": "filipi@gmail",
+  "telefone":"982643446",
+  "senha":"123",
+  "dados_bancarios":"02954349107"
+}
+
+### Deletar loja
+DELETE http://localhost:3000/loja/1

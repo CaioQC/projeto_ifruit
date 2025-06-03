@@ -37,6 +37,6 @@ export class Produto {
     @OneToMany(() => Avaliacao, (avaliacoes) => avaliacoes.produto)
     avaliacoes: Avaliacao[]
 
-    @OneToMany(() => Favorito, (favoritos) => favoritos.produto)
-    favoritos: Favorito[]
+    @OneToMany(() => Favorito, (favorito) => favorito.produto)
+    favorito: Favorito[]
 }
