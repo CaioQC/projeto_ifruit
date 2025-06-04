@@ -38,18 +38,18 @@ export class ProdutoService {
 
 
   findOne(id: number) {
-    return this.produtoRepository.findOneBy({ id: id });
+    return this.produtoRepository.findOneBy({ idProduto: id });
   }
 
   async update(id: number, dto: UpdateProdutoDto) {
-    const Produto = await this.produtoRepository.findOneBy({ id: id });
+    const Produto = await this.produtoRepository.findOneBy({ idProduto: id });
     if (!Produto) return null;
     this.repository.merge(Produto, dto);
     return this.repository.save(Produto);
   }
 
   async remove(id: number) {
-    const Produto = await this.produtoRepository.findOneBy({ id: id });
+    const Produto = await this.produtoRepository.findOneBy({ idProduto: id });
     if (!Produto) return null;
     return this.repository.remove(Produto);
   }

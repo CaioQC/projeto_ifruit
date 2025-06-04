@@ -1,0 +1,26 @@
+### list itens-carrinho
+GET http://localhost:3000/itens-carrinho
+
+### get itens-carrinho
+GET http://localhost:3000/itens-carrinho/1
+
+### create itens-carrinho
+POST http://localhost:3000/itens-carrinho
+Content-Type: application/json
+
+{ 
+    "quantidade": 1,
+    "idProduto": 1,
+    "idCarrinho": 3
+}
+
+### update itens-carrinho
+PATCH  http://localhost:3000/itens-carrinho/1
+Content-Type: application/json
+
+{
+    "quantidade": 2
+}
+
+### delete itens-carrinho
+DELETE http://localhost:3000/itens-carrinho/1

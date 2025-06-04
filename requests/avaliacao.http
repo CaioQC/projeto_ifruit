@@ -1,0 +1,32 @@
+### list avaliacao
+GET http://localhost:3000/avaliacao
+
+### get avaliacao
+GET http://localhost:3000/avaliacao/1
+
+### create avaliacao
+POST http://localhost:3000/avaliacao
+Content-Type: application/json
+
+{ 
+    "id_cliente": 2,
+    "id_produto": 1,
+    "descricao": "É uma avaliacao",
+    "nota": 4,
+    "data_avaliacao": "2025-06-10"
+}
+
+### update avaliacao
+PATCH  http://localhost:3000/avaliacao/1
+Content-Type: application/json
+
+{ 
+    "id_cliente": 2,
+    "id_produto": 1,
+    "descricao": "É uma avaliacao atualizada",
+    "nota": 3,
+    "data_avaliacao": "2025-06-10"
+}
+
+### delete avaliacao
+DELETE http://localhost:3000/avaliacao/2

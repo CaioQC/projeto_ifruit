@@ -7,7 +7,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'ty
 @Entity()
 export class Produto {
     @PrimaryGeneratedColumn()
-    id: number;
+    idProduto: number;
 
     @Column()
     nome: string;
