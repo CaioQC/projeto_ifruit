@@ -17,5 +17,4 @@ export class Pagamento {
 
     @ManyToOne(() => Status, (status) => status.pagamentos)
     status: Status
-    
 }

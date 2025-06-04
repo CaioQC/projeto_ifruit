@@ -1,0 +1,24 @@
+### list status
+GET http://localhost:3000/status
+
+### get favorito
+GET http://localhost:3000/status/1
+
+### create favorito
+POST http://localhost:3000/status
+Content-Type: application/json
+
+{
+
+}
+
+### update favorito
+PATCH  http://localhost:3000/status/1
+Content-Type: application/json
+
+{ 
+    "estado"
+}
+
+### delete favorito
+DELETE http://localhost:3000/status/3

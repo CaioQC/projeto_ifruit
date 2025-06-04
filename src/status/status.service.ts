@@ -1,26 +1,39 @@
 import { Injectable } from '@nestjs/common';
 import { CreateStatusDto } from './dto/create-status.dto';
 import { UpdateStatusDto } from './dto/update-status.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Status } from './entities/status.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class StatusService {
-  create(createStatusDto: CreateStatusDto) {
-    return 'This action adds a new status';
+  constructor(
+    @InjectRepository(Status)
+    private statusRepository: Repository<Status>
+  ){}
+
+  create(dto: CreateStatusDto) {
+    const status = this.statusRepository.create(dto)
+
+    return this.statusRepository.save(status);
   }
 
   findAll() {
-    return `This action returns all status`;
+    return this.statusRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} status`;
+  findOne(id_status: number) {
+    return this.statusRepository.findOneBy({ id_status });
   }
 
-  update(id: number, updateStatusDto: UpdateStatusDto) {
-    return `This action updates a #${id} status`;
+  async update(id_status: number, dto: UpdateStatusDto) {
+    // return this.;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} status`;
+  async remove(id_status: number) {
+    const status = await this.statusRepository.findOneBy({ id_status })
+    if(!status) return null
+
+    return this.statusRepository.remove(status);
   }
 }

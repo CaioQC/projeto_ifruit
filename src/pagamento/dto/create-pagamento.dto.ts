@@ -1,6 +1,9 @@
 import { IsString, IsNumber, IsPositive, IsDateString } from 'class-validator';
 
 export class CreatePagamentoDto {
+    @IsNumber()
+    id_status: number
+
     @IsString()
     metodo_pagamento: string;
 
