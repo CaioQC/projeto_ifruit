@@ -15,4 +15,7 @@ export class ItensCarrinho {
 
     @Column()
     quantidade: number
+
+    @Column()
+    subtotal: number
 }
