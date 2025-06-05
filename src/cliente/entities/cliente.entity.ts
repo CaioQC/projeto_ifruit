@@ -1,5 +1,6 @@
 import { Avaliacao } from 'src/avaliacao/entities/avaliacao.entity';
 import { Carrinho } from 'src/carrinho/entities/carrinho.entity';
+import { Endereco } from 'src/endereco/entities/endereco.entity';
 import { Favorito } from 'src/favoritos/entities/favorito.entity';
 import { HistoricoCompra } from 'src/historico-compra/entities/historico-compra.entity';
 import { Pedido } from 'src/pedido/entities/pedido.entity';
@@ -36,4 +37,7 @@ export class Cliente {
 
     @OneToMany(() => Favorito, (favoritos) => favoritos.cliente)
     favoritos: Favorito[]
+
+    @OneToMany(() => Endereco, (endereco) => endereco.cliente)
+    enderecos: Endereco[]
 }

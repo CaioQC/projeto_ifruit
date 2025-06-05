@@ -4,6 +4,9 @@ export class CreatePagamentoDto {
     @IsNumber()
     id_status: number
 
+    @IsNumber()
+    id_pedido: number
+
     @IsString()
     metodo_pagamento: string;
 

@@ -2,8 +2,9 @@ import { Carrinho } from 'src/carrinho/entities/carrinho.entity';
 import { Cliente } from 'src/cliente/entities/cliente.entity';
 import { Entregador } from 'src/entregador/entities/entregador.entity';
 import { HistoricoCompra } from 'src/historico-compra/entities/historico-compra.entity';
+import { Pagamento } from 'src/pagamento/entities/pagamento.entity';
 import { Status } from 'src/status/entities/status.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Pedido {
@@ -14,6 +15,7 @@ export class Pedido {
     cliente: Cliente
 
     @OneToOne(() => Carrinho, (carrinho) => carrinho.pedido)
+    @JoinColumn()
     carrinho: Carrinho
 
     @ManyToOne(() => Entregador, (entregador) => entregador.pedidos)
@@ -30,4 +32,7 @@ export class Pedido {
 
     @OneToOne(() => HistoricoCompra, (historicoCompra) => historicoCompra.pedido)
     historicoCompra: HistoricoCompra
+
+    @OneToOne(() => Pagamento, (pagamento) => pagamento.pedido)
+    pagamento: Pagamento
 }

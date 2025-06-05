@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreatePagamentoDto } from './dto/create-pagamento.dto';
 import { UpdatePagamentoDto } from './dto/update-pagamento.dto';
 import { Pagamento } from './entities/pagamento.entity';
+import { Pedido } from 'src/pedido/entities/pedido.entity';
 
 @Injectable()
 export class PagamentoService {
@@ -13,15 +14,22 @@ export class PagamentoService {
     private readonly pagamentoRepository: Repository<Pagamento>,
 
     @InjectRepository(Status)
-    private readonly statusRepository: Repository<Status>
+    private readonly statusRepository: Repository<Status>,
+
+    @InjectRepository(Pedido)
+    private readonly pedidoRepository: Repository<Pedido>
   ){}
 
   async create(dto: CreatePagamentoDto) {
     const status = await this.statusRepository.findOneBy({ id_status: dto.id_status })
     if(!status) return null
 
+    const pedido = await this.pedidoRepository.findOneBy({ id_pedido: dto.id_pedido })
+    if(!pedido) return null
+
     const pagamento = this.pagamentoRepository.create({
       ...dto,
+      pedido,
       status
     })
 

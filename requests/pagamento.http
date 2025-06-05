@@ -10,6 +10,7 @@ Content-Type: application/json
 
 { 
     "id_status": 1,
+    "id_pedido": 1,
     "metodo_pagamento": "pix",
     "valor": 78.99,
     "data_pagamento": "2025-06-10"

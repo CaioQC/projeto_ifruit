@@ -1,10 +1,15 @@
+import { Pedido } from 'src/pedido/entities/pedido.entity';
 import { Status } from 'src/status/entities/status.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Pagamento {
     @PrimaryGeneratedColumn()
     id_pagamento: number;
+
+    @OneToOne(() => Pedido, (pedido) => pedido.pagamento)
+    @JoinColumn()
+    pedido: Pedido
 
     @Column()
     metodo_pagamento: string;

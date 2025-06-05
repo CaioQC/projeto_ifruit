@@ -1,6 +1,9 @@
-import { IsString, IsEmail, IsPhoneNumber } from 'class-validator';
+import { IsString, IsEmail, IsPhoneNumber, IsNumber } from 'class-validator';
 
 export class CreateEnderecoDto {
+    @IsNumber()
+    id_cliente: number
+
     @IsString()
     estado: string
 

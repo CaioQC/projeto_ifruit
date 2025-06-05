@@ -7,22 +7,21 @@ import { Carrinho } from 'src/carrinho/entities/carrinho.entity';
 import { Cliente } from 'src/cliente/entities/cliente.entity';
 import { Entregador } from 'src/entregador/entities/entregador.entity';
 import { CreatePedidoDto } from './dto/create-pedido.dto';
-import { Pagamento } from 'src/pagamento/entities/pagamento.entity';
 import { Status } from 'src/status/entities/status.entity';
 
 @Injectable()
 export class PedidoService {
   constructor(
     @InjectRepository(Pedido)
-    private pedidoRepository: Repository<Pedido>,
+    private readonly pedidoRepository: Repository<Pedido>,
     @InjectRepository(Carrinho)
-    private carrinhoRepository: Repository<Carrinho>,
+    private readonly carrinhoRepository: Repository<Carrinho>,
     @InjectRepository(Cliente)
-    private clienteRepository: Repository<Cliente>,
+    private readonly clienteRepository: Repository<Cliente>,
     @InjectRepository(Entregador)
-    private entregadorRepository: Repository<Entregador>,
+    private readonly entregadorRepository: Repository<Entregador>,
     @InjectRepository(Status)
-    private statusRepository: Repository<Status>
+    private readonly statusRepository: Repository<Status>
   ) {}
 
   findAll(){
@@ -61,12 +60,14 @@ export class PedidoService {
     const pedido = await this.pedidoRepository.findOneBy({ id_pedido })
     if(!pedido) return null
     this.pedidoRepository.merge(pedido, dto)
+
     return this.pedidoRepository.save(pedido)
   }  
 
   async remove(id_pedido: number) {
     const pedido = await this.pedidoRepository.findOneBy({ id_pedido })
     if(!pedido) return null
+
     return this.pedidoRepository.remove(pedido)
   }
 }
