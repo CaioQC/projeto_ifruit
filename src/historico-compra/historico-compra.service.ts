@@ -1,26 +1,61 @@
 import { Injectable } from '@nestjs/common';
 import { CreateHistoricoCompraDto } from './dto/create-historico-compra.dto';
 import { UpdateHistoricoCompraDto } from './dto/update-historico-compra.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { HistoricoCompra } from './entities/historico-compra.entity';
+import { Repository } from 'typeorm';
+import { Cliente } from 'src/cliente/entities/cliente.entity';
+import { Pedido } from 'src/pedido/entities/pedido.entity';
 
 @Injectable()
 export class HistoricoCompraService {
-  create(createHistoricoCompraDto: CreateHistoricoCompraDto) {
-    return 'This action adds a new historicoCompra';
+  constructor(
+    @InjectRepository(HistoricoCompra)
+    private readonly historicoCompraRepository: Repository<HistoricoCompra>,
+
+    @InjectRepository(Cliente)
+    private readonly clienteRepository: Repository<Cliente>,
+
+    @InjectRepository(Pedido)
+    private readonly pedidoRepository: Repository<Pedido>
+  ){}
+
+  async create(dto: CreateHistoricoCompraDto) {
+    const cliente = await this.clienteRepository.findOneBy({ idCliente: dto.id_cliente })
+    if(!cliente) return null
+
+    const pedido = await this.pedidoRepository.findOneBy({ id_pedido: dto.id_pedido })
+    if(!pedido) return null
+
+    const historicoCompra = this.historicoCompraRepository.create({
+      ...dto,
+      cliente,
+      pedido
+    })
+
+    return this.historicoCompraRepository.save(historicoCompra);
   }
 
   findAll() {
-    return `This action returns all historicoCompra`;
+    return this.historicoCompraRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} historicoCompra`;
+  findOne(id_historico_compra: number) {
+    return this.historicoCompraRepository.findOneBy({ id_historico_compra });
   }
 
-  update(id: number, updateHistoricoCompraDto: UpdateHistoricoCompraDto) {
-    return `This action updates a #${id} historicoCompra`;
+  async update(id_historico_compra: number, dto: UpdateHistoricoCompraDto) {
+    const historicoCompra = await this.historicoCompraRepository.findOneBy({ id_historico_compra })
+    if(!historicoCompra) return null
+    this.historicoCompraRepository.merge(historicoCompra, dto)
+
+    return this.historicoCompraRepository.save(historicoCompra);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} historicoCompra`;
+  async remove(id_historico_compra: number) {
+    const historicoCompra = await this.historicoCompraRepository.findOneBy({ id_historico_compra })
+    if(!historicoCompra) return null
+
+    return this.historicoCompraRepository.remove(historicoCompra);
   }
 }

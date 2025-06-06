@@ -4,7 +4,7 @@ import { Endereco } from 'src/endereco/entities/endereco.entity';
 import { Favorito } from 'src/favoritos/entities/favorito.entity';
 import { HistoricoCompra } from 'src/historico-compra/entities/historico-compra.entity';
 import { Pedido } from 'src/pedido/entities/pedido.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity()
 export class Cliente {
@@ -29,8 +29,8 @@ export class Cliente {
     @OneToMany(() => Pedido, (pedido) => pedido.cliente)
     pedidos: Pedido[]
 
-    @OneToOne(() => HistoricoCompra, (historicoCompra) => historicoCompra.cliente)
-    historicoCompra: HistoricoCompra
+    @OneToMany(() => HistoricoCompra, (historicoCompra) => historicoCompra.cliente)
+    historicoCompra: HistoricoCompra[]
 
     @OneToMany(() => Avaliacao, (avaliacoes) => avaliacoes.cliente)
     avaliacoes: Avaliacao[]
