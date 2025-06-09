@@ -42,7 +42,9 @@ export class ItensCarrinhoService {
 
   findAll() {
     try{
-      return this.itemRepository.find();
+      return this.itemRepository.find({
+        relations : ["carrinho", "produto"]
+      });
     }
 
     catch(error){
@@ -52,7 +54,10 @@ export class ItensCarrinhoService {
 
   findOne(idItem: number) {
     try{
-      return this.itemRepository.findOneBy({ idItem });
+      return this.itemRepository.findOne({ 
+        where : { idItem : idItem },
+        relations : ["carrinho", "produto"]
+      });
     }
 
     catch(error){

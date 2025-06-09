@@ -36,7 +36,9 @@ export class EnderecoService {
 
   findAll() {
     try{
-      return this.enderecoRepository.find();
+      return this.enderecoRepository.find({
+        relations : ["cliente"]
+      });
     }
     
     catch(error){
@@ -46,7 +48,10 @@ export class EnderecoService {
 
   findOne(idEndereco: number) {
     try{
-      return this.enderecoRepository.findOneBy({ idEndereco });
+      return this.enderecoRepository.findOne({ 
+        where : { idEndereco : idEndereco },
+        relations : ["cliente"]  
+      });
     }
 
     catch(error){

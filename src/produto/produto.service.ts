@@ -36,10 +36,9 @@ export class ProdutoService {
     }
   }
 
-  async findAll(id_Loja: number) {
+  async findAll() {
     try{
       return this.produtoRepository.find({
-        where: { loja: { id_Loja: id_Loja } },
         relations: ['loja'],
       });
     }
@@ -52,7 +51,10 @@ export class ProdutoService {
 
   findOne(id: number) {
     try{
-      return this.produtoRepository.findOneBy({ idProduto: id });
+      return this.produtoRepository.findOne({ 
+        where : { idProduto: id },
+        relations : ["loja"]
+      });
     }
 
     catch(error){

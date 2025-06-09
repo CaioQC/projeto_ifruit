@@ -44,7 +44,9 @@ export class AvaliacaoService {
 
   findAll() {
     try{
-      return this.avaliacaoRepository.find();
+      return this.avaliacaoRepository.find({
+        relations : ["cliente", "produto"]
+      });
     }
 
     catch(error){
@@ -54,7 +56,10 @@ export class AvaliacaoService {
 
   findOne(id_avaliacao: number) {
     try{
-      return this.avaliacaoRepository.findOneBy({ id_avaliacao });
+      return this.avaliacaoRepository.findOne({
+          where : {id_avaliacao : id_avaliacao},
+        relations : ["cliente", "produto"]
+        });
     }
 
     catch(error){

@@ -44,7 +44,9 @@ export class PagamentoService {
 
   findAll() {
     try{
-      return this.pagamentoRepository.find();
+      return this.pagamentoRepository.find({
+        relations: ["pedido", "status"]
+      });
     }
 
     catch(error){
@@ -54,7 +56,9 @@ export class PagamentoService {
 
   findOne(id_pagamento: number) {
     try{
-      return this.pagamentoRepository.findOneBy({ id_pagamento });      
+      return this.pagamentoRepository.findOne({ 
+        where : { id_pagamento : id_pagamento }
+      });      
     }
 
     catch(error){

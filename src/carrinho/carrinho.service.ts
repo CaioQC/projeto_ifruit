@@ -17,7 +17,9 @@ export class CarrinhoService {
 
   findAll(){
     try{
-      return this.carrinhoRepository.find();
+      return this.carrinhoRepository.find({
+        relations : ["cliente"]
+      });
     }
 
     catch(error){
@@ -27,7 +29,10 @@ export class CarrinhoService {
 
   findOne(idCarrinho: number){
     try{
-      return this.carrinhoRepository.findOneBy({ idCarrinho });
+      return this.carrinhoRepository.findOne({ 
+        where : { idCarrinho : idCarrinho },
+        relations : ["cliente"]
+      });
     }
 
     catch(error){

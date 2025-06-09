@@ -44,7 +44,9 @@ export class FavoritosService {
 
   findAll() {
     try{
-      return this.favoritoRepository.find();
+      return this.favoritoRepository.find({
+        relations : ["cliente", "produto"]
+      });
     }
 
     catch(error){
@@ -54,7 +56,10 @@ export class FavoritosService {
 
   findOne(id_favorito: number) {
     try{
-      return this.favoritoRepository.findOneBy({ id_favorito });
+      return this.favoritoRepository.findOne({ 
+        where :  { id_favorito :  id_favorito },
+        relations : ["cliente", "produto"]
+      });
     }
 
     catch(error){

@@ -44,7 +44,9 @@ export class HistoricoCompraService {
 
   findAll() {
     try{
-      return this.historicoCompraRepository.find();
+      return this.historicoCompraRepository.find({
+        relations : ["cliente", "pedido"]
+      });
     }
 
     catch(error){
@@ -54,7 +56,10 @@ export class HistoricoCompraService {
 
   findOne(id_historico_compra: number) {
     try{
-      return this.historicoCompraRepository.findOneBy({ id_historico_compra });
+      return this.historicoCompraRepository.findOne({ 
+        where : { id_historico_compra : id_historico_compra },
+        relations : ["cliente", "pedido"]
+      });
     }
 
     catch(error){
