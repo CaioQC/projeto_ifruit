@@ -25,9 +25,12 @@ export class ItensCarrinhoService {
   
       const carrinho = await this.carrinhoRepository.findOneBy({ idCarrinho: dto.idCarrinho })
       if(!carrinho) return null
+
+      const subtotal = produto.preco * dto.quantidade
   
       const item = this.itemRepository.create({
         ...dto,
+        subtotal,
         produto,
         carrinho
       })
@@ -67,9 +70,21 @@ export class ItensCarrinhoService {
 
   async update(idItem: number, dto: UpdateItensCarrinhoDto) {
     try{
-      const item = await this.itemRepository.findOneBy({ idItem })
+      const item = await this.itemRepository.findOne({ 
+        where : { idItem : idItem },
+        relations : ["produto", "carrinho"]
+      })
       if(!item) return null
+
+      const produto = await this.produtoRepository.findOneBy({ idProduto : item.produto.idProduto })
+      if(!produto) return null
+
       this.itemRepository.merge(item, dto)
+
+      const subtotal = produto.preco * item.quantidade
+
+      item.subtotal = subtotal
+
       return this.itemRepository.save(item);
     }
 

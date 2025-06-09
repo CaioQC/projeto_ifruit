@@ -14,7 +14,7 @@ export class ProdutoController {
 
   @Get('loja/:id_loja')
   findAll(@Param('id_loja', ParseIntPipe) id_loja: number) {
-    return this.produtoService.findAll(id_loja);
+    return this.produtoService.findAll();
   }
 
   @Get(':id')

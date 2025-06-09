@@ -9,7 +9,7 @@ POST http://localhost:3000/itens-carrinho
 Content-Type: application/json
 
 { 
-    "quantidade": 1,
+    "quantidade": 3,
     "idProduto": 1,
     "idCarrinho": 3
 }
