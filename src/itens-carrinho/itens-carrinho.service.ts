@@ -19,39 +19,69 @@ export class ItensCarrinhoService {
   ){}
 
   async create(dto: CreateItensCarrinhoDto) {
-    const produto = await this.produtoRepository.findOneBy({ idProduto: dto.idProduto })
-    if(!produto) return null
+    try{
+      const produto = await this.produtoRepository.findOneBy({ idProduto: dto.idProduto })
+      if(!produto) return null
+  
+      const carrinho = await this.carrinhoRepository.findOneBy({ idCarrinho: dto.idCarrinho })
+      if(!carrinho) return null
+  
+      const item = this.itemRepository.create({
+        ...dto,
+        produto,
+        carrinho
+      })
+  
+      return this.itemRepository.save(item);
+    }
 
-    const carrinho = await this.carrinhoRepository.findOneBy({ idCarrinho: dto.idCarrinho })
-    if(!carrinho) return null
-
-    const item = this.itemRepository.create({
-      ...dto,
-      produto,
-      carrinho
-    })
-
-    return this.itemRepository.save(item);
+    catch(error){
+      console.error(error);
+    }
   }
 
   findAll() {
-    return this.itemRepository.find();
+    try{
+      return this.itemRepository.find();
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   findOne(idItem: number) {
-    return this.itemRepository.findOneBy({ idItem });
+    try{
+      return this.itemRepository.findOneBy({ idItem });
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async update(idItem: number, dto: UpdateItensCarrinhoDto) {
-    const item = await this.itemRepository.findOneBy({ idItem })
-    if(!item) return null
-    this.itemRepository.merge(item, dto)
-    return this.itemRepository.save(item);
+    try{
+      const item = await this.itemRepository.findOneBy({ idItem })
+      if(!item) return null
+      this.itemRepository.merge(item, dto)
+      return this.itemRepository.save(item);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async remove(idItem: number) {
-    const item = await this.itemRepository.findOneBy({ idItem })
-    if(!item) return null
-    return this.itemRepository.remove(item);
+    try{
+      const item = await this.itemRepository.findOneBy({ idItem })
+      if(!item) return null
+      return this.itemRepository.remove(item);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 }

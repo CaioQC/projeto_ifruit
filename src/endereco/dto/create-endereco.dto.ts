@@ -1,8 +1,8 @@
 import { IsString, IsNumber, IsNotEmpty } from 'class-validator';
 
 export class CreateEnderecoDto {
-    @IsNotEmpty({ message : "Este campo é obrigatório." })
-    @IsNumber({}, { message : "Este campo deve ser o número do id de um cliente válido." })
+    @IsNotEmpty({ message : "id_cliente é campo obrigatório." })
+    @IsNumber({}, { message : "id_cliente deve ser o número do id de um cliente válido." })
     id_cliente: number
 
     @IsString({ message : "Este campo deve ser uma string." })

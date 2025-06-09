@@ -15,42 +15,73 @@ export class ProdutoService {
 
     @InjectRepository(Loja)
     private readonly lojaRepository: Repository<Loja>,
-  ) { }
+  ){}
 
 
   async create(dto: CreateProdutoDto) {
-    const Loja = await this.lojaRepository.findOneBy({ id_Loja: dto.id_loja });
-
-    if (!Loja) {
-      throw new NotFoundException(`UF com sigla '${dto.id_loja}' não encontrada`);
+    try{
+      const Loja = await this.lojaRepository.findOneBy({ id_Loja: dto.id_loja });
+  
+      if (!Loja) {
+        throw new NotFoundException(`UF com sigla '${dto.id_loja}' não encontrada`);
+      }
+  
+  
+      const Produto = this.produtoRepository.create(dto)
+      return this.produtoRepository.save(Produto);
     }
 
-
-    const Produto = this.produtoRepository.create(dto)
-    return this.produtoRepository.save(Produto);
+    catch(error){
+      console.error(error);
+    }
   }
+
   async findAll(id_Loja: number) {
-    return this.produtoRepository.find({
-      where: { loja: { id_Loja: id_Loja } },
-      relations: ['loja'],
-    });
+    try{
+      return this.produtoRepository.find({
+        where: { loja: { id_Loja: id_Loja } },
+        relations: ['loja'],
+      });
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
 
   findOne(id: number) {
-    return this.produtoRepository.findOneBy({ idProduto: id });
+    try{
+      return this.produtoRepository.findOneBy({ idProduto: id });
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async update(id: number, dto: UpdateProdutoDto) {
-    const Produto = await this.produtoRepository.findOneBy({ idProduto: id });
-    if (!Produto) return null;
-    this.repository.merge(Produto, dto);
-    return this.repository.save(Produto);
+    try{
+      const Produto = await this.produtoRepository.findOneBy({ idProduto: id });
+      if (!Produto) return null;
+      this.repository.merge(Produto, dto);
+      return this.repository.save(Produto);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async remove(id: number) {
-    const Produto = await this.produtoRepository.findOneBy({ idProduto: id });
-    if (!Produto) return null;
-    return this.repository.remove(Produto);
+    try{
+      const Produto = await this.produtoRepository.findOneBy({ idProduto: id });
+      if (!Produto) return null;
+      return this.repository.remove(Produto);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 }

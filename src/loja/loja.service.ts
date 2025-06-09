@@ -11,28 +11,58 @@ export class LojaService {
   private readonly repository: Repository<Loja>) { }
 
   create(createLojaDto: CreateLojaDto) {
-    const Loja = this.repository.create(createLojaDto);
-    return this.repository.save(Loja);
+    try{
+      const Loja = this.repository.create(createLojaDto);
+      return this.repository.save(Loja);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   findAll() {
-    return this.repository.find();
+    try{
+      return this.repository.find();
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   findOne(id: number) {
-    return this.repository.findOneBy({ id_Loja: id });
+    try{
+      return this.repository.findOneBy({ id_Loja: id });
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async update(id: number, dto: UpdateLojaDto) {
-    const loja = await this.repository.findOneBy({ id_Loja: id });
-    if (!loja) return null;
-    this.repository.merge(loja, dto);
-    return this.repository.save(loja);
+    try{
+      const loja = await this.repository.findOneBy({ id_Loja: id });
+      if (!loja) return null;
+      this.repository.merge(loja, dto);
+      return this.repository.save(loja);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async remove(id: number) {
-    const loja = await this.repository.findOneBy({ id_Loja: id });
-    if (!loja) return null;
-    return this.repository.remove(loja);
+    try{
+      const loja = await this.repository.findOneBy({ id_Loja: id });
+      if (!loja) return null;
+      return this.repository.remove(loja);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 }

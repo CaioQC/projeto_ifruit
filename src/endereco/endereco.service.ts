@@ -17,37 +17,67 @@ export class EnderecoService {
   ){}
 
   async create(dto: CreateEnderecoDto) {
-    const cliente = await this.clienteRepository.findOneBy({ idCliente: dto.id_cliente })
-    if(!cliente) return null
+    try{
+      const cliente = await this.clienteRepository.findOneBy({ idCliente: dto.id_cliente })
+      if(!cliente) return null
+  
+      const endereco = this.enderecoRepository.create({
+        ...dto,
+        cliente
+      })
+  
+      return this.enderecoRepository.save(endereco);
+    }
 
-    const endereco = this.enderecoRepository.create({
-      ...dto,
-      cliente
-    })
-
-    return this.enderecoRepository.save(endereco);
+    catch(error){
+      console.error(error);
+    }
   }
 
   findAll() {
-    return this.enderecoRepository.find();
+    try{
+      return this.enderecoRepository.find();
+    }
+    
+    catch(error){
+      console.error(error);
+    }
   }
 
   findOne(idEndereco: number) {
-    return this.enderecoRepository.findOneBy({ idEndereco });
+    try{
+      return this.enderecoRepository.findOneBy({ idEndereco });
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async update(idEndereco: number, dto: UpdateEnderecoDto) {
-    const endereco = await this.enderecoRepository.findOneBy({ idEndereco })
-    if(!endereco) return null
-    this.enderecoRepository.merge(endereco, dto)
+    try{
+      const endereco = await this.enderecoRepository.findOneBy({ idEndereco })
+      if(!endereco) return null
+      this.enderecoRepository.merge(endereco, dto)
+  
+      return this.enderecoRepository.save(endereco);
+    }
 
-    return this.enderecoRepository.save(endereco);
+    catch(error){
+      console.error(error);
+    }
   }
 
   async remove(idEndereco: number) {
-    const endereco = await this.enderecoRepository.findOneBy({ idEndereco })
-    if(!endereco) return null
+    try{
+      const endereco = await this.enderecoRepository.findOneBy({ idEndereco })
+      if(!endereco) return null
+  
+      return this.enderecoRepository.remove(endereco);
+    }
 
-    return this.enderecoRepository.remove(endereco);
+    catch(error){
+      console.error(error);
+    }
   }
 }

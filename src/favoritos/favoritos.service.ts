@@ -21,41 +21,71 @@ export class FavoritosService {
   ){}
 
   async create(dto: CreateFavoritoDto) {
-    const produto = await this.produtoRepository.findOneBy({ idProduto: dto.id_produto });
-    if(!produto) return null
+    try{
+      const produto = await this.produtoRepository.findOneBy({ idProduto: dto.id_produto });
+      if(!produto) return null
+  
+      const cliente = await this.clienteRepository.findOneBy({ idCliente: dto.id_cliente })
+      if(!cliente) return null
+  
+      const favorito = this.favoritoRepository.create({
+        ...dto,
+        produto,
+        cliente
+      })
+  
+      return this.favoritoRepository.save(favorito);
+    }
 
-    const cliente = await this.clienteRepository.findOneBy({ idCliente: dto.id_cliente })
-    if(!cliente) return null
-
-    const favorito = this.favoritoRepository.create({
-      ...dto,
-      produto,
-      cliente
-    })
-
-    return this.favoritoRepository.save(favorito);
+    catch(error){
+      console.error(error);
+    }
   }
 
   findAll() {
-    return this.favoritoRepository.find();
+    try{
+      return this.favoritoRepository.find();
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   findOne(id_favorito: number) {
-    return this.favoritoRepository.findOneBy({ id_favorito });
+    try{
+      return this.favoritoRepository.findOneBy({ id_favorito });
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async update(id_favorito: number, dto: UpdateFavoritoDto) {
-    const favorito = await this.favoritoRepository.findOneBy({ id_favorito })
-    if(!favorito) return null
-    this.favoritoRepository.merge(favorito, dto)
+    try{
+      const favorito = await this.favoritoRepository.findOneBy({ id_favorito })
+      if(!favorito) return null
+      this.favoritoRepository.merge(favorito, dto)
+  
+      return this.favoritoRepository.save(favorito);
+    }
 
-    return this.favoritoRepository.save(favorito);
+    catch(error){
+      console.error(error);
+    }
   }
 
   async remove(id_favorito: number) {
-    const favorito = await this.favoritoRepository.findOneBy({ id_favorito })
-    if(!favorito) return null
+    try{
+      const favorito = await this.favoritoRepository.findOneBy({ id_favorito })
+      if(!favorito) return null
+  
+      return this.favoritoRepository.remove(favorito);
+    }
 
-    return this.favoritoRepository.remove(favorito);
+    catch(error){
+      console.error(error);
+    }
   }
 }

@@ -13,28 +13,58 @@ export class EntregadorService {
   ) {}
 
   findAll() {
-    return this.entregadorRepository.find()
+    try{
+      return this.entregadorRepository.find()
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   findOne(idEntregador: number) {
-    return this.entregadorRepository.findOneBy({ idEntregador })
+    try{
+      return this.entregadorRepository.findOneBy({ idEntregador })
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   create(dto: CreateEntregadorDto) {
-    const entregador = this.entregadorRepository.create(dto)
-    return this.entregadorRepository.save(entregador);
+    try{
+      const entregador = this.entregadorRepository.create(dto)
+      return this.entregadorRepository.save(entregador);
+    }
+    
+    catch(error){
+      console.error(error);
+    }
   }
 
   async update(idEntregador: number, dto: UpdateEntregadorDto){
-    const entregador = await this.entregadorRepository.findOneBy({ idEntregador })
-    if(!entregador) return null
-    this.entregadorRepository.merge(entregador, dto)
-    return this.entregadorRepository.save(entregador)
+    try{
+      const entregador = await this.entregadorRepository.findOneBy({ idEntregador })
+      if(!entregador) return null
+      this.entregadorRepository.merge(entregador, dto)
+      return this.entregadorRepository.save(entregador)
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }  
 
   async remove(idEntregador: number) {
-    const entregador = await this.entregadorRepository.findOneBy({ idEntregador })
-    if(!entregador) return null
-    return this.entregadorRepository.remove(entregador)
+    try{
+      const entregador = await this.entregadorRepository.findOneBy({ idEntregador })
+      if(!entregador) return null
+      return this.entregadorRepository.remove(entregador)
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 }

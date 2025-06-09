@@ -1,20 +1,20 @@
 import { IsString, IsEmail, IsPhoneNumber, IsNotEmpty } from 'class-validator';
 
 export class CreateClienteDto {
-    @IsString({ message : "Este campo deve ser uma string." })
-    @IsNotEmpty({ message : "Esse campo é obrigatório." })
+    @IsString({ message : "nome deve ser uma string." })
+    @IsNotEmpty({ message : "nome é campo obrigatório." })
     nome: string
 
     @IsEmail({}, { message : "Este campo deve ser um email válido." })
-    @IsNotEmpty({ message : "Este campo é obrigatório." })
+    @IsNotEmpty({ message : "email é campo obrigatório." })
     email: string
 
     @IsPhoneNumber("BR")
-    @IsNotEmpty({ message : "Este campo é obrigatório." })
+    @IsNotEmpty({ message : "telefone é campo obrigatório." })
     telefone: string
 
-    @IsString({ message : "Este campo deve ser uma string." })
-    @IsNotEmpty({ message : "Este campo é obrigatório." })
+    @IsString({ message : "senha deve ser uma string." })
+    @IsNotEmpty({ message : "senha é campo obrigatório." })
     senha: string
 }
 

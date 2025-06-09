@@ -13,28 +13,58 @@ export class ClienteService {
   ) {}
 
   findAll() {
-    return this.clienteRepository.find()
+    try{
+      return this.clienteRepository.find()
+    }
+
+    catch(error){
+      console.error(error)
+    }
   }
 
   findOne(idCliente: number) {
-    return this.clienteRepository.findOneBy({ idCliente })
+    try{
+      return this.clienteRepository.findOneBy({ idCliente })
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   create(dto: CreateClienteDto) {
-    const cliente = this.clienteRepository.create(dto)
-    return this.clienteRepository.save(cliente);
+    try{
+      const cliente = this.clienteRepository.create(dto)
+      return this.clienteRepository.save(cliente);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async update(idCliente: number, dto: UpdateClienteDto) {
-    const cliente = await this.clienteRepository.findOneBy({ idCliente })
-    if(!cliente) return null
-    this.clienteRepository.merge(cliente ,dto)
-    return this.clienteRepository.save(cliente);
+    try{
+      const cliente = await this.clienteRepository.findOneBy({ idCliente })
+      if(!cliente) return null
+      this.clienteRepository.merge(cliente ,dto)
+      return this.clienteRepository.save(cliente);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }  
 
   async remove(idCliente: number) {
-    const cliente = await this.clienteRepository.findOneBy({ idCliente })
-    if(!cliente) return null
-    return this.clienteRepository.remove(cliente);
+    try{
+      const cliente = await this.clienteRepository.findOneBy({ idCliente })
+      if(!cliente) return null
+      return this.clienteRepository.remove(cliente);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 }

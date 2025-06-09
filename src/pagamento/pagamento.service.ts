@@ -21,41 +21,71 @@ export class PagamentoService {
   ){}
 
   async create(dto: CreatePagamentoDto) {
-    const status = await this.statusRepository.findOneBy({ id_status: dto.id_status })
-    if(!status) return null
+    try{
+      const status = await this.statusRepository.findOneBy({ id_status: dto.id_status })
+      if(!status) return null
+  
+      const pedido = await this.pedidoRepository.findOneBy({ id_pedido: dto.id_pedido })
+      if(!pedido) return null
+  
+      const pagamento = this.pagamentoRepository.create({
+        ...dto,
+        pedido,
+        status
+      })
+  
+      return this.pagamentoRepository.save(pagamento);
+    }
 
-    const pedido = await this.pedidoRepository.findOneBy({ id_pedido: dto.id_pedido })
-    if(!pedido) return null
-
-    const pagamento = this.pagamentoRepository.create({
-      ...dto,
-      pedido,
-      status
-    })
-
-    return this.pagamentoRepository.save(pagamento);
+    catch(error){
+      console.error(error);
+    }
   }
 
   findAll() {
-    return this.pagamentoRepository.find();
+    try{
+      return this.pagamentoRepository.find();
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   findOne(id_pagamento: number) {
-    return this.pagamentoRepository.findOneBy({ id_pagamento });
+    try{
+      return this.pagamentoRepository.findOneBy({ id_pagamento });      
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async update(id_pagamento: number, dto: UpdatePagamentoDto) {
-    const pagamento = await this.pagamentoRepository.findOneBy({ id_pagamento })
-    if(!pagamento) return null
-    this.pagamentoRepository.merge(pagamento, dto)
+    try{
+      const pagamento = await this.pagamentoRepository.findOneBy({ id_pagamento })
+      if(!pagamento) return null
+      this.pagamentoRepository.merge(pagamento, dto)
 
-    return this.pagamentoRepository.save(pagamento);
+      return this.pagamentoRepository.save(pagamento);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async remove(id_pagamento: number) {
-    const pagamento = await this.pagamentoRepository.findOneBy({ id_pagamento })
-    if(!pagamento) return null
+    try{
+      const pagamento = await this.pagamentoRepository.findOneBy({ id_pagamento })
+      if(!pagamento) return null
+  
+      return this.pagamentoRepository.remove(pagamento);
+    }
 
-    return this.pagamentoRepository.remove(pagamento);
+    catch(error){
+      console.error(error);
+    }
   }
 }

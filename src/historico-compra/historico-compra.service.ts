@@ -21,41 +21,71 @@ export class HistoricoCompraService {
   ){}
 
   async create(dto: CreateHistoricoCompraDto) {
-    const cliente = await this.clienteRepository.findOneBy({ idCliente: dto.id_cliente })
-    if(!cliente) return null
+    try{
+      const cliente = await this.clienteRepository.findOneBy({ idCliente: dto.id_cliente })
+      if(!cliente) return null
+  
+      const pedido = await this.pedidoRepository.findOneBy({ id_pedido: dto.id_pedido })
+      if(!pedido) return null
+  
+      const historicoCompra = this.historicoCompraRepository.create({
+        ...dto,
+        cliente,
+        pedido
+      })
+  
+      return this.historicoCompraRepository.save(historicoCompra);
+    }
 
-    const pedido = await this.pedidoRepository.findOneBy({ id_pedido: dto.id_pedido })
-    if(!pedido) return null
-
-    const historicoCompra = this.historicoCompraRepository.create({
-      ...dto,
-      cliente,
-      pedido
-    })
-
-    return this.historicoCompraRepository.save(historicoCompra);
+    catch(error){
+      console.error(error);
+    }
   }
 
   findAll() {
-    return this.historicoCompraRepository.find();
+    try{
+      return this.historicoCompraRepository.find();
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   findOne(id_historico_compra: number) {
-    return this.historicoCompraRepository.findOneBy({ id_historico_compra });
+    try{
+      return this.historicoCompraRepository.findOneBy({ id_historico_compra });
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async update(id_historico_compra: number, dto: UpdateHistoricoCompraDto) {
-    const historicoCompra = await this.historicoCompraRepository.findOneBy({ id_historico_compra })
-    if(!historicoCompra) return null
-    this.historicoCompraRepository.merge(historicoCompra, dto)
+    try{
+      const historicoCompra = await this.historicoCompraRepository.findOneBy({ id_historico_compra })
+      if(!historicoCompra) return null
+      this.historicoCompraRepository.merge(historicoCompra, dto)
+  
+      return this.historicoCompraRepository.save(historicoCompra);
+    }
 
-    return this.historicoCompraRepository.save(historicoCompra);
+    catch(error){
+      console.error(error);
+    }
   }
 
   async remove(id_historico_compra: number) {
-    const historicoCompra = await this.historicoCompraRepository.findOneBy({ id_historico_compra })
-    if(!historicoCompra) return null
+    try{
+      const historicoCompra = await this.historicoCompraRepository.findOneBy({ id_historico_compra })
+      if(!historicoCompra) return null
+  
+      return this.historicoCompraRepository.remove(historicoCompra);
+    }
 
-    return this.historicoCompraRepository.remove(historicoCompra);
+    catch(error){
+      console.error(error);
+    }
   }
 }

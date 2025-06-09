@@ -21,41 +21,71 @@ export class AvaliacaoService {
   ){}
 
   async create(dto: CreateAvaliacaoDto) {
-    const produto = await this.produtoRepository.findOneBy({ idProduto: dto.id_produto });
-    if(!produto) return null
+    try{
+      const produto = await this.produtoRepository.findOneBy({ idProduto: dto.id_produto });
+      if(!produto) return null
+  
+      const cliente = await this.clienteRepository.findOneBy({ idCliente: dto.id_cliente })
+      if(!cliente) return null
+  
+      const avaliacao = this.avaliacaoRepository.create({
+        ...dto,
+        produto,
+        cliente
+      })
+  
+      return this.avaliacaoRepository.save(avaliacao)
+    }
 
-    const cliente = await this.clienteRepository.findOneBy({ idCliente: dto.id_cliente })
-    if(!cliente) return null
-
-    const avaliacao = this.avaliacaoRepository.create({
-      ...dto,
-      produto,
-      cliente
-    })
-
-    return this.avaliacaoRepository.save(avaliacao)
+    catch(error){
+      console.error(error);
+    }
   }
 
   findAll() {
-    return this.avaliacaoRepository.find();
+    try{
+      return this.avaliacaoRepository.find();
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   findOne(id_avaliacao: number) {
-    return this.avaliacaoRepository.findOneBy({ id_avaliacao });
+    try{
+      return this.avaliacaoRepository.findOneBy({ id_avaliacao });
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async update(id_avaliacao: number, dto: UpdateAvaliacaoDto) {
-    const avaliacao = await this.avaliacaoRepository.findOneBy({ id_avaliacao })
-    if(!avaliacao) return null
-    this.avaliacaoRepository.merge(avaliacao, dto)
+    try{
+      const avaliacao = await this.avaliacaoRepository.findOneBy({ id_avaliacao })
+      if(!avaliacao) return null
+      this.avaliacaoRepository.merge(avaliacao, dto)
+  
+      return this.avaliacaoRepository.save(avaliacao);
+    }
 
-    return this.avaliacaoRepository.save(avaliacao);
+    catch(error){
+      console.error(error);
+    }
   }
 
   async remove(id_avaliacao: number) {
-    const avaliacao = await this.avaliacaoRepository.findOneBy({ id_avaliacao })
-    if(!avaliacao) return null
+    try{
+      const avaliacao = await this.avaliacaoRepository.findOneBy({ id_avaliacao })
+      if(!avaliacao) return null
+  
+      return this.avaliacaoRepository.remove(avaliacao);
+    }
 
-    return this.avaliacaoRepository.remove(avaliacao);
+    catch(error){
+      console.error(error);
+    }
   }
 }

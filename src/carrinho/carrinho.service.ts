@@ -16,34 +16,64 @@ export class CarrinhoService {
   ) {}
 
   findAll(){
-    return this.carrinhoRepository.find();
+    try{
+      return this.carrinhoRepository.find();
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   findOne(idCarrinho: number){
-    return this.carrinhoRepository.findOneBy({ idCarrinho });
+    try{
+      return this.carrinhoRepository.findOneBy({ idCarrinho });
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async create(dto: CreateCarrinhoDto){
-    const cliente = await this.clienteRepository.findOneBy({ idCliente: dto.idCliente })
-    if(!cliente) return null
-    
-    const carrinho = this.carrinhoRepository.create({
-      ...dto,
-      cliente
-    })
-    return this.carrinhoRepository.save(carrinho);
+    try{
+      const cliente = await this.clienteRepository.findOneBy({ idCliente: dto.idCliente })
+      if(!cliente) return null
+      
+      const carrinho = this.carrinhoRepository.create({
+        ...dto,
+        cliente
+      })
+      return this.carrinhoRepository.save(carrinho);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async update(idCarrinho: number, dto: UpdateCarrinhoDto){
-    const carrinho = await this.carrinhoRepository.findOneBy({ idCarrinho })
-    if(!carrinho) return null
-    this.carrinhoRepository.merge(carrinho, dto)
-    return this.carrinhoRepository.save(carrinho)
+    try{
+      const carrinho = await this.carrinhoRepository.findOneBy({ idCarrinho })
+      if(!carrinho) return null
+      this.carrinhoRepository.merge(carrinho, dto)
+      return this.carrinhoRepository.save(carrinho)
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }  
 
   async remove(idCarrinho: number) {
-    const carrinho = await this.carrinhoRepository.findOneBy({ idCarrinho })
-    if(!carrinho) return null
-    return this.carrinhoRepository.remove(carrinho)
+    try{
+      const carrinho = await this.carrinhoRepository.findOneBy({ idCarrinho })
+      if(!carrinho) return null
+      return this.carrinhoRepository.remove(carrinho)
+    }
+    
+    catch(error){
+      console.error(error);
+    }
   }
 }

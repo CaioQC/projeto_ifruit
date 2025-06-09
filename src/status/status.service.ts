@@ -14,17 +14,35 @@ export class StatusService {
   ){}
 
   create(dto: CreateStatusDto) {
-    const status = this.statusRepository.create(dto)
-  
-    return this.statusRepository.save(status);
+    try{
+      const status = this.statusRepository.create(dto)
+    
+      return this.statusRepository.save(status);
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   findAll() {
-    return this.statusRepository.find();
+    try{
+      return this.statusRepository.find();
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   findOne(id_status: number) {
-    return this.statusRepository.findOneBy({ id_status });
+    try{ 
+      return this.statusRepository.findOneBy({ id_status });
+    }
+
+    catch(error){
+      console.error(error);
+    }
   }
 
   async update(id_status: number, dto: UpdateStatusDto) {
@@ -32,9 +50,15 @@ export class StatusService {
   }
 
   async remove(id_status: number) {
-    const status = await this.statusRepository.findOneBy({ id_status })
-    if(!status) return null
+    try{
+      const status = await this.statusRepository.findOneBy({ id_status })
+      if(!status) return null
+  
+      return this.statusRepository.remove(status);
+    }
 
-    return this.statusRepository.remove(status);
+    catch(error){
+      console.error(error);
+    }
   }
 }
