@@ -1,12 +1,15 @@
-import { IsDateString, IsNumber } from "class-validator";
+import { IsDateString, IsNotEmpty, IsNumber } from "class-validator";
 
 export class CreateHistoricoCompraDto {
-    @IsNumber()
+    @IsNumber({}, { message : "Este campo deve ser um número do id de um cliente válido." })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     id_cliente: number
 
-    @IsNumber()
+    @IsNumber({}, { message : "Este campo deve ser um número do id de um pedido válido." })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     id_pedido: number
 
-    @IsDateString()
+    @IsDateString({}, { message : "data_compra deve ser uma date string ISO 8601 válida."})
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     data_compra: string
 }

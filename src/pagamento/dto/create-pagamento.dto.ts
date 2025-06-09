@@ -1,19 +1,24 @@
-import { IsString, IsNumber, IsPositive, IsDateString } from 'class-validator';
+import { IsString, IsNumber, IsPositive, IsDateString, IsNotEmpty } from 'class-validator';
 
 export class CreatePagamentoDto {
-    @IsNumber()
+    @IsNumber({}, { message : "Este campo deve ser um número do id de um status válido." })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     id_status: number
 
-    @IsNumber()
+    @IsNumber({}, { message : "Este campo deve ser um número do id de um pedido válido." })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     id_pedido: number
 
-    @IsString()
+    @IsString({ message : "Este campo deve ser uma string" })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     metodo_pagamento: string;
 
-    @IsNumber()
-    @IsPositive()
+    @IsNumber({}, { message : "Este campo deve ser um número." })
+    @IsPositive({ message : "Este campo deve ser um número positivo." })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     valor: number;
 
-    @IsDateString()
+    @IsDateString({}, { message : "data_pagamento deve ser uma date string ISO 8601 válida."})
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     data_pagamento: string;
 }

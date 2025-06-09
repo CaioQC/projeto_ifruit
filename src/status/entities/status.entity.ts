@@ -19,7 +19,7 @@ export class Status {
     @PrimaryGeneratedColumn()
     id_status: number;
 
-    @Column({type: "varchar", default: StatusPedido.PENDENTE || StatusPagamento.PENDENTE })
+    @Column({type: "varchar"})
     estado: StatusPedido | StatusPagamento;
 
     @OneToMany(() => Pedido, (pedidos) => pedidos.status)

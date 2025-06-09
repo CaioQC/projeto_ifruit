@@ -4,6 +4,7 @@ import { UpdateStatusDto } from './dto/update-status.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Status } from './entities/status.entity';
 import { Repository } from 'typeorm';
+import { response } from 'express';
 
 @Injectable()
 export class StatusService {
@@ -14,7 +15,7 @@ export class StatusService {
 
   create(dto: CreateStatusDto) {
     const status = this.statusRepository.create(dto)
-
+  
     return this.statusRepository.save(status);
   }
 
@@ -27,7 +28,7 @@ export class StatusService {
   }
 
   async update(id_status: number, dto: UpdateStatusDto) {
-    // return this.;
+
   }
 
   async remove(id_status: number) {

@@ -1,24 +1,30 @@
-import { IsString, IsEmail, IsPhoneNumber, IsNumber } from 'class-validator';
+import { IsString, IsNumber, IsNotEmpty } from 'class-validator';
 
 export class CreateEnderecoDto {
-    @IsNumber()
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
+    @IsNumber({}, { message : "Este campo deve ser o número do id de um cliente válido." })
     id_cliente: number
 
-    @IsString()
+    @IsString({ message : "Este campo deve ser uma string." })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     estado: string
 
-    @IsString()
+    @IsString({ message : "Este campo deve ser uma string." })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     cidade: string
 
-    @IsString()
+    @IsString({ message : "Este campo deve ser uma string." })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     bairro: string
 
-    @IsString()
+    @IsString({ message : "Este campo deve ser uma string." })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     rua: string
 
-    @IsString()
+    @IsString({ message : "Este campo deve ser uma string." })
     complemento: string
 
-    @IsString()
+    @IsString({ message : "Este campo deve ser uma string." })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     cep: string
 }

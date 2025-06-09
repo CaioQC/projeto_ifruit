@@ -1,21 +1,27 @@
-import { IsString, IsEmail, IsPhoneNumber } from 'class-validator';
+import { IsString, IsEmail, IsPhoneNumber, IsNotEmpty } from 'class-validator';
 
 export class CreateLojaDto {
-    @IsString()
+    @IsString({ message : "Este campo deve ser uma string." })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     nome: string;
 
-    @IsString()
+    @IsString({ message : "Este campo deve ser uma string" })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     endereco: string;
 
-    @IsEmail()
+    @IsEmail({}, { message : "Este campo deve ser um email válido." })
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
     email: string;
 
-    @IsPhoneNumber('BR')
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
+    @IsPhoneNumber('BR', { message : "Este campo deve ser um número de telefone válido." })
     telefone: string;
 
-    @IsString()
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
+    @IsString({ message : "Este campo deve ser uma string." })
     senha: string;
 
-    @IsString()
+    @IsNotEmpty({ message : "Este campo é obrigatório." })
+    @IsString({ message : "Este campo deve ser uma string." })
     dados_bancarios: string;
 }
