@@ -20,15 +20,18 @@ export class ProdutoService {
 
   async create(dto: CreateProdutoDto) {
     try{
-      const Loja = await this.lojaRepository.findOneBy({ id_Loja: dto.id_loja });
+      const loja = await this.lojaRepository.findOneBy({ id_Loja: dto.id_loja });
   
-      if (!Loja) {
+      if (!loja) {
         throw new NotFoundException(`UF com sigla '${dto.id_loja}' não encontrada`);
       }
   
-  
-      const Produto = this.produtoRepository.create(dto)
-      return this.produtoRepository.save(Produto);
+      const produto = this.produtoRepository.create({
+        ...dto,
+        loja
+      })
+
+      return this.produtoRepository.save(produto);
     }
 
     catch(error){

@@ -1,6 +1,6 @@
 import { Cliente } from "src/cliente/entities/cliente.entity";
 import { Pedido } from "src/pedido/entities/pedido.entity";
-import { Column, Entity, ManyToOne, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class HistoricoCompra {
@@ -11,6 +11,7 @@ export class HistoricoCompra {
     cliente: Cliente
 
     @OneToOne(() => Pedido, (pedido) => pedido.historicoCompra)
+    @JoinColumn()
     pedido: Pedido
 
     @Column()

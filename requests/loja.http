@@ -8,8 +8,8 @@ Content-Type: application/json
 {
   "nome": "Loja da ana julia",
   "endereco": "endereco ficticio",
-  "email": "ana@gmail",
-  "telefone":"982643446",
+  "email": "ana@gmail.com",
+  "telefone":"61982643446",
   "senha":"123",
   "dados_bancarios":"02954349107"
 }
@@ -21,11 +21,11 @@ Content-Type: application/json
 {
   "nome": "Loja do Filipi",
   "endereco":"Qs7 areal",
-  "email": "filipi@gmail",
-  "telefone":"982643446",
+  "email": "filipi@gmail.com",
+  "telefone":"61982643446",
   "senha":"123",
   "dados_bancarios":"02954349107"
 }
 
 ### Deletar loja
-DELETE http://localhost:3000/loja/1
+DELETE http://localhost:3000/loja/2

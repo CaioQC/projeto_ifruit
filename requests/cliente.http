@@ -25,4 +25,4 @@ Content-Type: application/json
 }
 
 ### Deletar um cliente
-DELETE http://localhost:3000/cliente/1
+DELETE http://localhost:3000/cliente/2

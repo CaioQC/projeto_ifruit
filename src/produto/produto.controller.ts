@@ -12,7 +12,7 @@ export class ProdutoController {
     return this.produtoService.create(createProdutoDto);
   }
 
-  @Get('loja/:id_loja')
+  @Get()
   findAll(@Param('id_loja', ParseIntPipe) id_loja: number) {
     return this.produtoService.findAll();
   }

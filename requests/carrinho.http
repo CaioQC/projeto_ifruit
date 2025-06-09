@@ -10,7 +10,7 @@ Content-Type: application/json
 
 { 
     "dataCriacao": "2025-10-02",
-    "idCliente": 2
+    "idCliente": 1
 }
 
 ### update carrinho

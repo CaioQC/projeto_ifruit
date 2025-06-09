@@ -27,7 +27,7 @@ export class PedidoService {
   findAll(){
     try{
       return this.pedidoRepository.find({
-        relations : ["pedido", "carrinho", "cliente", "entregador", "status"]
+        relations : ["carrinho", "cliente", "entregador", "status"]
       })
     }
 
@@ -40,7 +40,7 @@ export class PedidoService {
     try{
       return this.pedidoRepository.findOne({ 
         where : { id_pedido : id_pedido },
-        relations : ["pedido", "carrinho", "cliente", "entregador", "status"]
+        relations : ["carrinho", "cliente", "entregador", "status"]
       })
     }
 

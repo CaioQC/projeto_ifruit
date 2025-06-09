@@ -10,8 +10,8 @@ Content-Type: application/json
 
 { 
     "quantidade": 1,
-    "idProduto": 1,
-    "idCarrinho": 3
+    "id_cleiente": 1,
+    "data_compra": 1
 }
 
 ### update historico-compra

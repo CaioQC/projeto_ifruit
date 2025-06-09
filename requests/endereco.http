@@ -31,4 +31,4 @@ Content-Type: application/json
 }
 
 ### Deletar um endereco
-DELETE http://localhost:3000/endereco/1
+DELETE http://localhost:3000/endereco/2

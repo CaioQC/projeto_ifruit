@@ -18,8 +18,7 @@ Content-Type: application/json
 PATCH  http://localhost:3000/favoritos/1
 Content-Type: application/json
 
-{ 
-    "id_produto": 1,
+{
     "data_adicao": "2025-07-10"
 }
 

@@ -1,8 +1,8 @@
 ### Listar produto 
-GET http://localhost:3000/produto/1
+GET http://localhost:3000/produto
 
 ### Listar produtos por loja
-GET http://localhost:3000/produto/loja/1
+GET http://localhost:3000/produto/1
 
 ###Criar produto
 POST http://localhost:3000/produto
@@ -10,11 +10,11 @@ Content-Type: application/json
 
 {
   "nome": "Maca",
-  "descricao":"Al",    
+  "descricao":"Al",
   "preco": 999,
   "quantidade": 1,
   "categoria":"Alfaces incriveis",
-  "loja":1
+  "id_loja":1
 }
 
 ### Atualizar um produto

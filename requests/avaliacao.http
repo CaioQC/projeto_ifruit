@@ -21,8 +21,6 @@ PATCH  http://localhost:3000/avaliacao/1
 Content-Type: application/json
 
 { 
-    "id_cliente": 2,
-    "id_produto": 1,
     "descricao": "É uma avaliacao atualizada",
     "nota": 3,
     "data_avaliacao": "2025-06-10"
