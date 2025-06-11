@@ -31,4 +31,13 @@ export class UserService {
     if (user instanceof Loja) return this.lojaRepo.save(user);
     throw new Error('Invalid user type');
   }
+
+  async findOne(id: number) {
+  const user =
+    (await this.clienteRepo.findOne({ where: { id } })) ||
+    (await this.entregadorRepo.findOne({ where: { id } })) ||
+    (await this.lojaRepo.findOne({ where: { id } }));
+
+  return user;
+}
 }

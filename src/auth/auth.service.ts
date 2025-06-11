@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { randomBytes, scrypt as _scrypt } from 'crypto';
@@ -8,6 +9,7 @@ import { Entregador } from 'src/entregador/entities/entregador.entity';
 import { Loja } from 'src/loja/entities/loja.entity';
 import { UserService } from 'src/user/user.service';
 import { CreateUserDto } from 'src/user/dto/create-user-dto';
+import { UserRole } from 'src/user/entities/user.entity';
 
 const scrypt = promisify(_scrypt);
 
@@ -18,9 +20,13 @@ export class AuthService {
     private readonly userService: UserService,
   ) {}
 
-  // Cadastro
+  async hashPassword(senha: string): Promise<string> {
+    const salt = randomBytes(8).toString('hex');
+    const hash = (await scrypt(senha, salt, 32)) as Buffer;
+    return `${salt}.${hash.toString('hex')}`;
+  }
+
   async signUp(dto: CreateUserDto) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
     const { email, senha, role, nome, telefone, endereco, dados_bancarios, cpf, veiculo } = dto;
 
     const existingUser = await this.userService.findByEmail(email);
@@ -28,52 +34,60 @@ export class AuthService {
       throw new BadRequestException('Email em uso');
     }
 
-    // Para clientes, nome e telefone são obrigatórios
-    if (role === 'cliente' && (!nome || !telefone)) {
+    // Exemplo de regra: para USER (cliente), nome e telefone são obrigatórios
+    if (role === UserRole.USER && (!nome || !telefone)) {
       throw new BadRequestException('Nome e telefone são obrigatórios para clientes.');
     }
 
-    const salt = randomBytes(8).toString('hex');
-    const hash = (await scrypt(senha, salt, 32)) as Buffer;
-    const saltAndHash = `${salt}.${hash.toString('hex')}`;
+    const senhaHash = await this.hashPassword(senha);
 
     let user: Cliente | Entregador | Loja;
 
     switch (role) {
-      case 'cliente':
+      case UserRole.USER:
         user = Object.assign(new Cliente(), {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           email,
-          senha: saltAndHash,
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          senha: senhaHash,
           nome,
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           telefone,
+          role,
         });
         break;
 
-      case 'entregador':
-        user = Object.assign(new Entregador(), {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          email,
-          senha: saltAndHash,
-          telefone, 
-          cpf, 
-          veiculo,
-          nome,
-          dados_bancarios
-        });
-        break;
-
-      case 'loja':
+      case UserRole.MANAGER:
         user = Object.assign(new Loja(), {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           email,
-          senha: saltAndHash,
-          telefone, 
-          endereco, 
+          senha: senhaHash,
+          telefone,
+          endereco,
           dados_bancarios,
-          nome
+          nome,
+          role,
+        });
+        break;
+
+      case UserRole.DELIVERY:
+      user = Object.assign(new Entregador(), {
+        email,
+        senha: senhaHash,
+        nome,
+        telefone,
+        cpf,
+        veiculo,
+        dados_bancarios,
+        role,
+      });
+      break;
+
+      case UserRole.ADMIN:
+        // Se tiver entidade específica para admin, ou use Cliente/Loja
+        // Ajuste conforme seu modelo de negócio
+        user = Object.assign(new Cliente(), {
+          email,
+          senha: senhaHash,
+          nome,
+          telefone,
+          role,
         });
         break;
 
@@ -82,12 +96,10 @@ export class AuthService {
     }
 
     const savedUser = await this.userService.save(user);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { senha: _, ...result } = savedUser;
     return result;
   }
 
-  // Login
   async singIn(email: string, senha: string) {
     const user = await this.userService.findByEmail(email);
     if (!user) {
@@ -104,7 +116,7 @@ export class AuthService {
     const payload = {
       username: user.email,
       sub: user.id,
-      role: user.constructor.name.toLowerCase(),
+      role: user.role, // já é UserRole enum
     };
 
     return { accessToken: this.jwtService.sign(payload) };

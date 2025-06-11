@@ -7,7 +7,7 @@ Content-Type: application/json
 {
   "email": "erick@gmail.com", 
   "senha": "erick123",
-  "role": "cliente",
+  "role": "USER",
   "nome": "Erick",
   "telefone": "61231314141"
 }
@@ -23,6 +23,7 @@ Content-Type: application/json
 
 ### 3. Adicionar endereço
 POST http://localhost:3000/endereco
+Authorization: Bearer <Token>
 Content-Type: application/json
 
 {
@@ -40,6 +41,7 @@ GET http://localhost:3000/produto
 
 ### 5. Criar carrinho
 POST http://localhost:3000/carrinho
+Authorization: Bearer <Token>
 Content-Type: application/json
 
 { 
@@ -49,6 +51,7 @@ Content-Type: application/json
 
 ### 6. Adicionar itens ao carrinho
 POST http://localhost:3000/itens-carrinho
+Authorization: Bearer <Token>
 Content-Type: application/json
 
 { 
@@ -59,6 +62,7 @@ Content-Type: application/json
 
 ### 7. Criar pedido
 POST http://localhost:3000/pedido
+Authorization: Bearer <Token>
 Content-Type: application/json
 
 {
@@ -72,6 +76,7 @@ Content-Type: application/json
 
 ### 8. Adicionar pagamento
 POST http://localhost:3000/pagamento
+Authorization: Bearer <Token>
 Content-Type: application/json
 
 { 
@@ -84,6 +89,7 @@ Content-Type: application/json
 
 ### 9. Visualizar pedido
 GET http://localhost:3000/pedido/5
+Authorization: Bearer <Token>
 
 ###10. Cria um histórico de uma compra (era pra ser feito de forma automática)
 POST http://localhost:3000/historico-compra
@@ -99,6 +105,7 @@ Content-Type: application/json
 
 ### 1. Adicionar um produto ao favorito
 POST http://localhost:3000/favoritos
+Authorization: Bearer <Token>
 Content-Type: application/json
 
 { 
@@ -109,6 +116,7 @@ Content-Type: application/json
 
 ### 2. Verificar os itens nos seus favoritos com base no seu id
 GET http://localhost:3000/favoritos/5
+Authorization: Bearer <Token>
 
 
 #### -------------------- FLUXO LOJA -------------------- ####
@@ -118,7 +126,7 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-  "role": "loja",
+  "role": "MANAGER",
   "nome": "Ifruit",
   "endereco": "SMPW 1 CONJUNTO 1 LOTE 1",
   "email": "ifruit@gmail.com",
@@ -140,14 +148,16 @@ Content-Type: application/json
 
 ###3.1 Visualizar dados da loja
 GET http://localhost:3000/loja/3
+Authorization: Bearer <Token>
 Content-Type: application/json
 
 ###3.2 Alterar dados da loja
 PATCH http://localhost:3000/loja/3
+Authorization: Bearer <Token>
 Content-Type: application/json
 
 {
-  "role": "loja",
+  "role": "MANAGER",
   "nome": "Ifruit",
   "endereco": "SMPW 5 CONJUNTO 5 LOTE 5",
   "email": "ifruit@hotmail.com",
@@ -158,6 +168,7 @@ Content-Type: application/json
 
 ###4. Criar produto
 POST http://localhost:3000/produto
+Authorization: Bearer <Token>
 Content-Type: application/json
 
 {
@@ -171,6 +182,7 @@ Content-Type: application/json
 
 ###4.1 Alterar informações de produto
 PATCH http://localhost:3000/produto/2
+Authorization: Bearer <Token>
 Content-Type: application/json
 
 {
@@ -184,9 +196,11 @@ Content-Type: application/json
 
 ###4.2 Listar produto criado pelo id_produto
 GET http://localhost:3000/produto/2
+Authorization: Bearer <Token>
 
 ###4.3 Deletar produto
 DELETE http://localhost:3000/produto/2
+Authorization: Bearer <Token>
 
 
 //  -------------------- FLUXO ENTREGADOR --------------------
@@ -198,7 +212,7 @@ Content-Type: application/json
 {
   "email": "entregador@gmail.com", 
   "senha": "entregador",
-  "role": "entregador",
+  "role": "DELIVERY",
   "nome": "erick",
   "telefone": "61231314141",
    "cpf": "129831841",
@@ -217,11 +231,13 @@ Content-Type: application/json
 
 ### 3. Listar pedidos por loja (no caso, loja 3)
 GET http://localhost:3000/pedido/3
+Authorization: Bearer <Token>
 
 
 ### Atualizar o status de um pedido para "entregue"
 ### id_status, 1 para pendente, 2 para entregue
 PATCH http://localhost:3000/pedido/3
+Authorization: Bearer <Token>
 Content-Type: application/json
 
 {
@@ -233,3 +249,4 @@ Content-Type: application/json
 
 ###1. Lista todas as compras já feitas no aplicativo
 GET http://localhost:3000/historico-compra
+Authorization: Bearer <Token>

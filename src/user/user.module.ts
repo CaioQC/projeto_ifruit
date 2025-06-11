@@ -8,6 +8,6 @@ import { Loja } from 'src/loja/entities/loja.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Cliente, Entregador, Loja])],
   providers: [UserService],
-  exports: [UserService],
+  exports: [UserService,  TypeOrmModule],
 })
 export class UserModule {}
