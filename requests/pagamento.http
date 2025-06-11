@@ -1,0 +1,31 @@
+### list pagamento
+GET http://localhost:3000/pagamento
+
+### get pagamento
+GET http://localhost:3000/pagamento/1
+
+### create pagamento
+POST http://localhost:3000/pagamento
+Content-Type: application/json
+
+{ 
+    "id_status": 1,
+    "id_pedido": 2,
+    "metodo_pagamento": "pix",
+    "valor": 78.99,
+    "data_pagamento": "2025-06-10"
+}
+
+### update pagamento
+PATCH  http://localhost:3000/pagamento/1
+Content-Type: application/json
+
+{ 
+    "id_status": 1,
+    "metodo_pagamento": "debito",
+    "valor": 23.99,
+    "data_adicao": "2025-07-12"
+}
+
+### delete pagamento
+DELETE http://localhost:3000/pagamento/2

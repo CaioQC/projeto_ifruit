@@ -1,0 +1,235 @@
+// -------------------- FLUXO CLIENTE --------------------
+
+### 1. Criar conta
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "erick@gmail.com", 
+  "senha": "erick123",
+  "role": "cliente",
+  "nome": "Erick",
+  "telefone": "61231314141"
+}
+
+### 2. Logar conta
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+    "email": "erick@gmail.com", 
+    "senha": "erick123"
+}
+
+### 3. Adicionar endereço
+POST http://localhost:3000/endereco
+Content-Type: application/json
+
+{
+    "id_cliente": 4,
+    "estado": "DF",
+    "cidade": "Samambaia",
+    "bairro": "Samambaia",
+    "rua": "Skate Park",
+    "complemento": "10",
+    "cep": "88888-000"
+}
+
+### 4. Visualizar produtos
+GET http://localhost:3000/produto
+
+### 5. Criar carrinho
+POST http://localhost:3000/carrinho
+Content-Type: application/json
+
+{ 
+    "dataCriacao": "2025-10-02",
+    "idCliente": 4
+}
+
+### 6. Adicionar itens ao carrinho
+POST http://localhost:3000/itens-carrinho
+Content-Type: application/json
+
+{ 
+    "quantidade": 3,
+    "idProduto": 1,
+    "idCarrinho": 5
+}
+
+### 7. Criar pedido
+POST http://localhost:3000/pedido
+Content-Type: application/json
+
+{
+    "id_carrinho": 5,
+    "id_cliente": 4,
+    "id_entregador": 1,
+    "id_status": 1,
+    "valor_total": 20.50,
+    "data_pedido": "2025-04-03"
+}
+
+### 8. Adicionar pagamento
+POST http://localhost:3000/pagamento
+Content-Type: application/json
+
+{ 
+    "id_status": 1,
+    "id_pedido": 5,
+    "metodo_pagamento": "pix",
+    "valor": 78.99,
+    "data_pagamento": "2025-06-10"
+}
+
+### 9. Visualizar pedido
+GET http://localhost:3000/pedido/5
+
+###10. Cria um histórico de uma compra (era pra ser feito de forma automática)
+POST http://localhost:3000/historico-compra
+Content-Type: application/json
+
+{
+    "id_cliente": 3,
+    "id_pedido": 3,
+    "data_compra": "2025-06-11"
+}
+
+//  -------------------- CLIENTE ADICIONANDO AOS FAVORITOS --------------------
+
+### 1. Adicionar um produto ao favorito
+POST http://localhost:3000/favoritos
+Content-Type: application/json
+
+{ 
+    "id_produto": 1,
+    "id_cliente": 4,
+    "data_adicao": "2025-06-11"
+}
+
+### 2. Verificar os itens nos seus favoritos com base no seu id
+GET http://localhost:3000/favoritos/5
+
+
+#### -------------------- FLUXO LOJA -------------------- ####
+
+###1. Criar conta
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "role": "loja",
+  "nome": "Ifruit",
+  "endereco": "SMPW 1 CONJUNTO 1 LOTE 1",
+  "email": "ifruit@gmail.com",
+  "telefone":"61911223344",
+  "senha":"ifruit123",
+  "dados_bancarios":"00123456789"
+}
+
+###2. Logar conta
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "email": "ifruit@gmail.com",
+  "senha":"ifruit123"
+}
+
+###3. Ações da loja
+
+###3.1 Visualizar dados da loja
+GET http://localhost:3000/loja/3
+Content-Type: application/json
+
+###3.2 Alterar dados da loja
+PATCH http://localhost:3000/loja/3
+Content-Type: application/json
+
+{
+  "role": "loja",
+  "nome": "Ifruit",
+  "endereco": "SMPW 5 CONJUNTO 5 LOTE 5",
+  "email": "ifruit@hotmail.com",
+  "telefone":"61911223344",
+  "senha":"ifruit0101",
+  "dados_bancarios":"00122334455"
+}
+
+###4. Criar produto
+POST http://localhost:3000/produto
+Content-Type: application/json
+
+{
+  "nome": "Laranja",
+  "descricao":"Fruta cítrica e rica em vitamina C",
+  "preco": 8,
+  "quantidade": 100,
+  "categoria":"Frutas cítricas",
+  "id_loja": 3
+}
+
+###4.1 Alterar informações de produto
+PATCH http://localhost:3000/produto/2
+Content-Type: application/json
+
+{
+  "nome": "Laranja",
+  "descricao":"Fruta cítrica e rica em vitamina C",
+  "preco": 10,
+  "quantidade": 100,
+  "categoria":"Frutas tropicais",
+  "id_loja": 3
+}
+
+###4.2 Listar produto criado pelo id_produto
+GET http://localhost:3000/produto/2
+
+###4.3 Deletar produto
+DELETE http://localhost:3000/produto/2
+
+
+//  -------------------- FLUXO ENTREGADOR --------------------
+
+### 1. Criar conta
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "entregador@gmail.com", 
+  "senha": "entregador",
+  "role": "entregador",
+  "nome": "erick",
+  "telefone": "61231314141",
+   "cpf": "129831841",
+   "veiculo": "Motocicleta",
+   "dados_bancarios": "01222222222"
+}
+
+### 2. Logar conta
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+    "email": "entregador@gmail.com", 
+    "senha": "entregador"
+}
+
+### 3. Listar pedidos por loja (no caso, loja 3)
+GET http://localhost:3000/pedido/3
+
+
+### Atualizar o status de um pedido para "entregue"
+### id_status, 1 para pendente, 2 para entregue
+PATCH http://localhost:3000/pedido/3
+Content-Type: application/json
+
+{
+    "id_status": 2
+}
+
+
+#### -------------------- FLUXO VISUALIZAR HISTÓRICO (LOJA - HISTÓRICO DE VENDAS) -------------------- ####
+
+###1. Lista todas as compras já feitas no aplicativo
+GET http://localhost:3000/historico-compra

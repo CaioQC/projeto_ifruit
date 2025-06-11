@@ -1,0 +1,26 @@
+### list historico-compra
+GET http://localhost:3000/historico-compra
+
+### get historico-compra
+GET http://localhost:3000/historico-compra/1
+
+### create historico-compra
+POST http://localhost:3000/historico-compra
+Content-Type: application/json
+
+{ 
+    "quantidade": 1,
+    "id_cleiente": 1,
+    "data_compra": 1
+}
+
+### update historico-compra
+PATCH  http://localhost:3000/historico-compra/1
+Content-Type: application/json
+
+{
+    "quantidade": 2
+}
+
+### delete historico-compra
+DELETE http://localhost:3000/historico-compra/1
