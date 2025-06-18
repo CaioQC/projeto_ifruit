@@ -52,6 +52,11 @@ Antes de iniciar, você precisará ter o [Node.js](https://nodejs.org/) instalad
 
 ## 🖥️ Front-end
 
+### Observações para iniciar o desenvolvimento do front-end: 
+-  É necessário que o projeto do back-end e do front-end fiquem em pastas separadas dentro de um mesmo diretório.
+- Lembre-se de subir o servidor do seu back-end quando for testar o do front.
+
+## Passo-a-passo para desenvolver:
 1. **Crie um novo projeto React**
 
    Crie um projeto React na pasta do projeto
@@ -72,3 +77,13 @@ Antes de iniciar, você precisará ter o [Node.js](https://nodejs.org/) instalad
 
     ```bash
     npm install axios
+
+5. **Instale o cors**
+
+    ```bash
+    npm install cors
+
+6. **Suba o servidor do front-end**
+
+    ```bash
+    npm run dev
