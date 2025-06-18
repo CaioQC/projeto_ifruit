@@ -1,0 +1,28 @@
+### Listar clientes
+GET http://localhost:3000/cliente
+
+### Listar clientes 
+GET http://localhost:3000/cliente/1
+
+###Criar cliente
+POST http://localhost:3000/cliente
+Content-Type: application/json
+
+{
+    "nome": "Caio",
+    "email": "caio@gmail.com",
+    "telefone": "61983558170",
+    "senha": "qualquercoisa123"
+}
+
+### Atualizar um cliente
+PATCH http://localhost:3000/cliente/1
+Content-Type: application/json
+
+{
+    "nome": "Pedro",
+    "email": "pedro@gmail.com"
+}
+
+### Deletar um cliente
+DELETE http://localhost:3000/cliente/2

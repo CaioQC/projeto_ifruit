@@ -1,0 +1,31 @@
+### Listar entregadors
+GET http://localhost:3000/entregador
+
+### Listar entregadors 
+GET http://localhost:3000/entregador/1
+
+###Criar entregador
+POST http://localhost:3000/entregador
+Content-Type: application/json
+
+{
+    "nome": "joao",
+    "email": "joao@gmail.com",
+    "telefone": "61983558170",
+    "senha": "qualquercoisa123",
+    "dados_bancarios": "894382940324",
+    "cpf": "000.000.000-00",
+    "veiculo": "moto"
+}
+
+### Atualizar um entregador
+PATCH http://localhost:3000/entregador/1
+Content-Type: application/json
+
+{
+    "nome": "Pedro",
+    "email": "pedro@gmail.com"
+}
+
+### Deletar um entregador
+DELETE http://localhost:3000/entregador/2

@@ -1,0 +1,30 @@
+### Listar pedido
+GET http://localhost:3000/pedido
+
+### Listar pedidos por loja
+GET http://localhost:3000/pedido/1
+
+###Criar pedido
+POST http://localhost:3000/pedido
+Content-Type: application/json
+
+{
+    "id_carrinho": 2,
+    "id_cliente": 2,
+    "id_entregador": 1,
+    "id_status": 1,
+    "valor_total": 20.50,
+    "data_pedido": "2025-04-03"
+}
+
+### Atualizar um pedido
+PATCH http://localhost:3000/pedido/1
+Content-Type: application/json
+
+{
+    "valor_total": 20.00,
+    "data_pedido": "2025-12-03"
+}
+
+### Deletar um pedido
+DELETE http://localhost:3000/pedido/2

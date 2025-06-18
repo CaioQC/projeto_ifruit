@@ -1,0 +1,19 @@
+
+### Fazendo cadastro
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "email": "teste2@gmail.com", 
+    "password": "teste"
+}
+
+### Fazendo login
+
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+    "email": "teste2@gmail.com", 
+    "password": "teste"
+}
