@@ -48,3 +48,27 @@ Antes de iniciar, você precisará ter o [Node.js](https://nodejs.org/) instalad
 
     ```bash
     Navegue até a pasta requests e acesse o arquivo Fluxos, que contém todo o fluxo do sistema.
+
+
+## 🖥️ Front-end
+
+1. **Crie um novo projeto React**
+
+   Crie um projeto React na pasta do projeto
+    ```bash
+    npm create vite@latest nomeDoSeuApp --template react-ts
+
+2. **Acesse a pasta do projeto**
+
+    ```bash
+    cd lojinha
+
+3. **Instale todas as dependências necessárias**
+
+    ```bash
+    npm i
+
+4. **Instale o axios**
+
+    ```bash
+    npm install axios
