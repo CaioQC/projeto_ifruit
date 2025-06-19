@@ -15,7 +15,7 @@ import { UserService } from 'src/user/user.service';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         secret: config.getOrThrow('JWT_SECRET'),
-        signOptions: { expiresIn: '10m' },
+        signOptions: { expiresIn: '1h' },
       }),
     }),
     UserModule

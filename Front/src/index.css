@@ -1,68 +1,308 @@
+/* Criar pedido */
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --font-base: 'Inter', Arial, sans-serif !important;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --color-bg: #f9fafb !important;
+  --color-text: #1f2937 !important;
+  --color-muted: #6b7280 !important;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  --color-primary: #034b1b !important;
+  --color-primary-hover: #1d4ed8 !important;
+  --color-yellow: #facc15 !important;
+  --color-yellow-hover: #eab308 !important;
+  --color-green: #16a34a !important;
+  --color-green-hover: #15803d !important;
+  --color-gray: #6b7280 !important;
+  --color-gray-hover: #4b5563 !important;
+  --color-purple: #7c3aed !important;
+  --color-purple-hover: #6d28d9 !important;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  margin: 0 !important;
+  font-family: var(--font-base) !important;
+  background-color: var(--color-bg) !important;
+  color: var(--color-text) !important;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Layout principal */
+.pagina {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2rem !important;
+  padding: 2rem !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+@media (min-width: 768px) {
+  .pagina {
+    flex-direction: row !important;
+    align-items: flex-start !important;
+  }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Seções */
+.secao-produtos {
+  background-color: #f6ffce;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 100px rgba(0, 0, 0, 0.363) !important;
+  flex: 1 !important;
+}
+
+.titulo-secao {
+  font-size: 2rem !important;
+  font-weight: bold !important;
+  margin-bottom: 1.5rem !important;
+  text-align: center !important;
+}
+
+.titulo-secao.azul {
+  color: var(--color-primary) !important;
+}
+.titulo-secao.verde {
+  color: var(--color-green) !important;
+}
+
+/* Grid de produtos */
+.grid-produtos {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 1.5rem !important;
+}
+@media (min-width: 640px) {
+  .grid-produtos {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
-  a:hover {
-    color: #747bff;
+}
+@media (min-width: 1024px) {
+  .grid-produtos {
+    grid-template-columns: repeat(3, 1fr) !important;
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+/* Cards */
+.card-produto {
+  background-color: #ffffff !important;
+  padding: 1.5rem !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  transition: box-shadow 0.3s ease !important;
+}
+
+.card-produto:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.titulo-produto {
+  font-size: 1.25rem !important;
+  font-weight: bold !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.preco-produto {
+  font-size: 1rem !important;
+  color: var(--color-muted) !important;
+}
+
+.botoes-produto {
+  display: flex !important;
+  gap: 0.5rem !important;
+  margin-top: 1rem !important;
+}
+
+/* Carrinho */
+.carrinho {
+  width: 100% !important;
+  max-width: 350px !important;
+  background-color: #ffffff !important;
+  border-radius: 1rem !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.carrinho-vazio {
+  color: var(--color-muted) !important;
+  text-align: center !important;
+}
+
+.lista-carrinho {
+  list-style: none !important;
+  padding: 0 !important;
+  margin-bottom: 1rem !important;
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+}
+
+.item-carrinho {
+  display: flex !important;
+  justify-content: space-between !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.info-direita {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.nome-produto {
+  font-weight: bold !important;
+}
+
+.detalhes-produto {
+  font-size: 0.9rem !important;
+  color: var(--color-muted) !important;
+}
+
+.subtotal {
+  font-weight: bold !important;
+}
+
+.btn-remove {
+  background: none !important;
+  border: none !important;
+  font-size: 1.25rem !important;
+  color: #dc2626 !important;
+  cursor: pointer !important;
+}
+.btn-remove:hover {
+  color: #b91c1c !important;
+}
+
+/* Total e botões */
+.total-carrinho {
+  margin-top: 1rem !important;
+}
+
+.valor-total {
+  font-size: 1.125rem !important;
+  font-weight: bold !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.botoes-secundarios {
+  margin-top: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+}
+
+/* Botões gerais */
+.btn {
+  border: none !important;
+  padding: 0.75rem !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  border-radius: 0.5rem !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s !important;
+  color: white !important;
+  width: 100% !important;
+}
+
+.btn-primary {
+  background-color: var(--color-primary) !important;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover) !important;
+}
+
+.btn-yellow {
+  background-color: var(--color-yellow) !important;
+  color: #1f2937 !important;
+}
+.btn-yellow:hover {
+  background-color: var(--color-yellow-hover) !important;
+}
+
+.btn-green {
+  background-color: var(--color-green) !important;
+}
+.btn-green:hover {
+  background-color: var(--color-green-hover) !important;
+}
+
+.btn-gray {
+  background-color: var(--color-gray) !important;
+}
+.btn-gray:hover {
+  background-color: var(--color-gray-hover) !important;
+}
+
+.btn-purple {
+  background-color: var(--color-purple) !important;
+}
+.btn-purple:hover {
+  background-color: var(--color-purple-hover) !important;
+}
+
+
+/* Criar endereço */
+.container-endereco {
+  max-width: 480px !important;
+  margin: 2rem auto !important;
+  padding: 1.5rem !important;
+  background-color: #ffffff !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.titulo-endereco {
+  font-size: 1.75rem !important;
+  font-weight: bold !important;
+  margin-bottom: 1rem !important;
+  color: #1f2937 !important;
+  text-align: center !important;
+}
+
+.form-endereco {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+}
+
+.input-endereco {
+  width: 100% !important;
+  padding: 0.75rem !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 0.5rem !important;
+  font-size: 1rem !important;
+  color: #111827 !important;
+  background-color: #f9fafb !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.input-endereco:focus {
+  border-color: #7c3aed !important;
+  outline: none !important;
+  background-color: #ffffff !important;
+}
+
+.btn-salvar-endereco {
+  width: 100% !important;
+  background-color: #7c3aed !important;
+  color: white !important;
+  padding: 0.75rem !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  cursor: pointer !important;
+  transition: background-color 0.25s ease !important;
+}
+
+.btn-salvar-endereco:hover {
+  background-color: #6d28d9 !important;
 }

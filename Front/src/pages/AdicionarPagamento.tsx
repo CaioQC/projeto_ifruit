@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export default function AdicionarPagamento() {
   const { idPedido } = useParams();
-  const [idStatus, setIdStatus] = useState(1);
+  const [idStatus] = useState(2);
   const [metodoPagamento, setMetodoPagamento] = useState("");
   const [valor, setValor] = useState(""); // valor total do pedido
   const [dataPagamento, setDataPagamento] = useState(""); // data atual
@@ -79,19 +79,6 @@ export default function AdicionarPagamento() {
     <div className="signup-form">
       <h1>Adicionar Pagamento</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label>Status do Pagamento</label>
-          <select
-            value={idStatus}
-            onChange={(e) => setIdStatus(Number(e.target.value))}
-            className="input"
-            required
-          >
-            <option value={1}>Pendente</option>
-            <option value={2}>Pago</option>
-          </select>
-        </div>
-
         <div>
           <label>Método de Pagamento</label>
           <input

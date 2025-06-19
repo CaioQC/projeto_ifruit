@@ -96,7 +96,7 @@ export default function Signup() {
           value={form.role}
           onChange={handleChange}
         >
-          <option value="">Selecione o tipo de conta</option>
+          <option value="" disabled hidden selected>Selecione o tipo de conta</option>
           <option value="USER">Cliente</option>
           <option value="DELIVERY">Entregador</option>
           <option value="MANAGER">Lojista</option>

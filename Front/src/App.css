@@ -1,6 +1,12 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 #root {
   /* max-width: 1280px; */
-  width: 50%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -44,6 +50,14 @@
 
 
 /*--------- Pagina de cadastro ---------*/
+body {
+  background-image: url(https://static.vecteezy.com/ti/vetor-gratis/p1/46699028-vegetais-verduras-desatado-padrao-isolado-fundo-legumes-icones-definir-minimalista-horizontal-bandeira-organico-comida-natural-produzir-eco-produtos-para-cobrir-involucro-papel-textil-impressao-vetor.jpg);
+  background-position: center;
+  display: flex;
+  place-items: center;
+  min-height: 100vh;
+}
+
 .signup-form {
   max-width: 400px;
   margin: 4rem auto;
@@ -80,7 +94,7 @@
 .input:focus {
   outline: none;
   border-color: #646cff;
-  background-color: #fff;
+  background-color: #e2e4fa !important;
   color: #333; /* Mantém o texto escuro no foco */
 }
 
@@ -102,11 +116,11 @@ select.input {
   padding-right: 2.5rem;
   cursor: pointer;
   background-color: #f9f9f9;
-  color: #333; /* Cor do texto escura para dropdown */
+  color: #333 !important; /* Cor do texto escura para dropdown */
 }
 
 select.input option {
-  background-color: #fff;
+  background-color: #fff !important;
   color: #333;
 }
 
@@ -369,47 +383,116 @@ select.input option {
 
 /* --------- Página de Histórico de Pedidos --------- */
 .historico-container {
-  /* max-width: 1120px; */
-  width: 100%;
-  margin: 4rem auto;
-  background: #fff;
-  padding: 3rem 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  color: #333;
-  text-align: center;
+  width: 800px !important;
+  margin: 2rem auto !important;
+  padding: 1rem !important;
+  background-color: #f3f3f3;
+  border-radius: 10px;
 }
 
-.historico-container h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
+.titulo-historico {
+  font-size: 2rem !important;
+  font-weight: bold !important;
+  text-align: center !important;
+  margin-bottom: 1.5rem !important;
+  color: var(--color-primary) !important;
 }
 
-.historico-container ul {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 2rem;
+.scroll-wrapper {
+  max-height: 75vh !important;
+  overflow-y: auto !important;
+  padding-right: 0.5rem !important;
+}
+
+/* Barra de rolagem personalizada */
+.scroll-wrapper::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+.scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray) !important;
+  border-radius: 4px !important;
+}
+
+.scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-gray-hover) !important;
+}
+
+.lista-pedidos {
+  list-style: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+}
+
+.card-pedido {
+  background-color: #ffffff !important;
+  border-radius: 1rem !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05) !important;
+  border-left: 5px solid var(--color-primary) !important;
+}
+
+.cabecalho-pedido {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 1rem !important;
+}
+
+.numero-pedido {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: var(--color-text) !important;
+}
+
+.data-pedido {
+  font-size: 0.95rem !important;
+  color: var(--color-muted) !important;
+}
+
+.valor-total {
+  font-weight: bold !important;
+  color: var(--color-green) !important;
+  margin-bottom: 1rem !important;
   text-align: left;
 }
 
-.historico-container ul li {
-  padding: 1rem 1.25rem;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-  box-shadow: inset 0 0 5px #e0e0e0;
+.produtos-pedido {
+  margin-top: 1rem !important;
 }
 
-.historico-container ul li strong {
-  color: #646cff;
+.titulo-produtos {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.75rem !important;
+  color: var(--color-text) !important;
+  text-align: left;
 }
+
+.lista-produtos {
+  list-style: none !important;
+  padding-left: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+}
+
+.item-produto {
+  background-color: var(--color-bg) !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 0.5rem !important;
+  border: 1px solid #e5e7eb !important;
+  font-size: 0.95rem !important;
+  color: var(--color-text) !important;
+  text-align: left;
+}
+
 
 /*--------- Pagina de favoritos ---------*/
 .favoritos-container {
-  max-width: 900px; /* aumentar um pouco */
+  width: 900px; /* aumentar um pouco */
   margin: 3rem auto; /* dar mais margem */
   padding: 2.5rem 3rem; /* mais padding */
   background: #fff;
@@ -433,9 +516,9 @@ select.input option {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px; 
 }
 
 .favorito-item {
@@ -652,6 +735,18 @@ select.input option {
   transition: background-color 0.3s ease;
   user-select: none;
   margin-top: 0.5rem;
+}
+
+.delete-button {
+  margin-left: 10px;
+  background-color: rgba(255, 0, 0, 0.856);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .submit-button:hover,

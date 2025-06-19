@@ -122,7 +122,7 @@ export default function CriarPedido() {
         {
           id_produto: produto.idProduto,
           id_cliente: Number(idCliente),
-          data_adicao: new Date().toLocaleString('sv'),
+          data_adicao: new Date().toLocaleString("sv"),
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -202,32 +202,28 @@ export default function CriarPedido() {
   };
 
   return (
-    <div className="flex max-w-7xl mx-auto min-h-screen p-6 gap-6">
-      {/* Produtos - esquerda */}
-      <div className="flex-1 overflow-auto">
-        <h2 className="text-3xl font-bold mb-6 text-center">Produtos</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
+    <div className="pagina">
+      {/* Produtos */}
+      <section className="secao-produtos">
+        <h2 className="titulo-secao azul">Nossos Produtos</h2>
+
+        <div className="grid-produtos">
           {produtos.map((produto) => (
-            <div
-              key={produto.idProduto}
-              className="border rounded-lg p-4 flex flex-col justify-between shadow hover:shadow-lg transition"
-            >
+            <div key={produto.idProduto} className="card-produto">
               <div>
-                <h3 className="text-lg font-semibold mb-2">{produto.nome}</h3>
-                <p className="text-gray-700 mb-4 font-medium">
-                  R$ {produto.preco.toFixed(2)}
-                </p>
+                <h3 className="titulo-produto">{produto.nome}</h3>
+                <p className="preco-produto">R$ {produto.preco.toFixed(2)}</p>
               </div>
-              <div className="flex gap-2 mt-4">
+              <div className="botoes-produto">
                 <button
                   onClick={() => adicionarAoCarrinho(produto)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-semibold transition flex-1"
+                  className="btn btn-primary"
                 >
-                  Adicionar ao Carrinho
+                  Adicionar
                 </button>
                 <button
                   onClick={() => favoritarProduto(produto)}
-                  className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-md font-semibold transition flex-1"
+                  className="btn btn-yellow"
                 >
                   Favoritar
                 </button>
@@ -235,36 +231,32 @@ export default function CriarPedido() {
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Carrinho - direita */}
-      <aside className="w-1/3 border-l p-6 bg-white shadow-lg flex flex-col">
-        <h2 className="text-xl font-bold mb-4">Carrinho</h2>
+      {/* Carrinho */}
+      <aside className="carrinho">
+        <h2 className="titulo-secao verde">Carrinho</h2>
 
         {itensCarrinho.length === 0 ? (
-          <p className="text-gray-500">Seu carrinho está vazio.</p>
+          <p className="carrinho-vazio">Seu carrinho está vazio.</p>
         ) : (
           <>
-            <ul className="flex-grow overflow-auto space-y-3">
+            <ul className="lista-carrinho">
               {itensCarrinho.map((item) => (
-                <li
-                  key={item.idProduto}
-                  className="flex justify-between items-center border-b pb-2"
-                >
+                <li key={item.idProduto} className="item-carrinho">
                   <div>
-                    <p className="font-medium">{item.nome}</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="nome-produto">{item.nome}</p>
+                    <p className="detalhes-produto">
                       {item.quantidade} x R$ {item.preco.toFixed(2)}
                     </p>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="font-semibold">
+                  <div className="info-direita">
+                    <span className="subtotal">
                       R$ {(item.preco * item.quantidade).toFixed(2)}
                     </span>
                     <button
                       onClick={() => removerDoCarrinho(item.idProduto)}
-                      className="text-red-600 hover:text-red-800 font-bold"
-                      aria-label={`Remover ${item.nome} do carrinho`}
+                      className="btn-remove"
                     >
                       ×
                     </button>
@@ -273,36 +265,34 @@ export default function CriarPedido() {
               ))}
             </ul>
 
-            <div className="mt-4 space-y-2">
-              <p className="text-lg font-bold">
+            <div className="total-carrinho">
+              <p className="valor-total">
                 Total: R${" "}
                 {itensCarrinho
                   .reduce((acc, i) => acc + i.preco * i.quantidade, 0)
                   .toFixed(2)}
               </p>
-              <button
-                onClick={handleFinalizarPedido}
-                className="bg-green-600 hover:bg-green-700 text-white w-full py-2 rounded font-semibold"
-              >
+              <button onClick={handleFinalizarPedido} className="btn btn-green">
                 Finalizar Pedido
               </button>
             </div>
           </>
         )}
 
-        <button
-          onClick={() => navigate(`/historico/${idCliente}`)}
-          className="bg-gray-500 hover:bg-gray-600 text-white w-full py-2 rounded font-semibold"
-        >
-          Ver Histórico de Pedidos
-        </button>
-
-        <button
-          onClick={() => navigate(`/favoritos/cliente/${idCliente}`)}
-          className="bg-purple-600 hover:bg-purple-700 text-white w-full py-2 rounded font-semibold"
-        >
-          Ver meus Favoritados
-        </button>
+        <div className="botoes-secundarios">
+          <button
+            onClick={() => navigate(`/historico/${idCliente}`)}
+            className="btn btn-gray"
+          >
+            Ver Histórico de Pedidos
+          </button>
+          <button
+            onClick={() => navigate(`/favoritos/cliente/${idCliente}`)}
+            className="btn btn-purple"
+          >
+            Ver Favoritos
+          </button>
+        </div>
       </aside>
     </div>
   );

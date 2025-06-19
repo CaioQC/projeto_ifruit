@@ -33,13 +33,10 @@ export default function Endereco() {
     }
 
     try {
-      await axios.post(
-        "/endereco",
-        {
-          ...form,
-          id_cliente: Number(idCliente), 
-        }
-      );
+      await axios.post("/endereco", {
+        ...form,
+        id_cliente: Number(idCliente),
+      });
       alert("Endereço adicionado com sucesso!");
       navigate(`/pagamento/${idPedido}`);
     } catch (err: any) {
@@ -52,49 +49,47 @@ export default function Endereco() {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Adicionar Endereço</h1>
-      <form onSubmit={handleSubmit} className="space-y-3">
+    <div className="container-endereco">
+      <h1 className="titulo-endereco">Adicionar Endereço</h1>
+
+      <form onSubmit={handleSubmit} className="form-endereco">
         <input
           name="estado"
           placeholder="Estado"
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="input-endereco"
         />
         <input
           name="cidade"
           placeholder="Cidade"
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="input-endereco"
         />
         <input
           name="bairro"
           placeholder="Bairro"
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="input-endereco"
         />
         <input
           name="rua"
           placeholder="Rua"
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="input-endereco"
         />
         <input
           name="complemento"
           placeholder="Complemento"
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="input-endereco"
         />
         <input
           name="cep"
           placeholder="CEP"
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="input-endereco"
         />
-        <button
-          type="submit"
-          className="w-full bg-purple-600 text-white py-2 rounded"
-        >
+        <button type="submit" className="btn-salvar-endereco">
           Salvar Endereço
         </button>
       </form>

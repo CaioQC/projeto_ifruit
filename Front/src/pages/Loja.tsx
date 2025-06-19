@@ -171,7 +171,6 @@ export default function LojaPerfil() {
                   setMensagem("ID da loja não encontrado.");
                 }
               }}
-              style={{ marginLeft: "10px" }}
             >
               Ver Estoque
             </button>

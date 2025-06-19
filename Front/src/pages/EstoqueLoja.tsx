@@ -236,11 +236,6 @@ export default function EstoqueLoja() {
               className="delete-button"
               type="button"
               onClick={() => handleExcluir(p.idProduto)}
-              style={{
-                marginLeft: "10px",
-                backgroundColor: "red",
-                color: "white",
-              }}
             >
               Excluir
             </button>
