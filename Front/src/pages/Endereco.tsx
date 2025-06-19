@@ -2,7 +2,7 @@
 // src/pages/Endereco.tsx
 import { useState } from "react";
 import axios from "../api/axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Endereco() {
   const [form, setForm] = useState({
@@ -15,6 +15,7 @@ export default function Endereco() {
   });
 
   const navigate = useNavigate();
+  const { idPedido } = useParams();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -40,7 +41,7 @@ export default function Endereco() {
         }
       );
       alert("Endereço adicionado com sucesso!");
-      navigate("/criar-pedido");
+      navigate(`/pagamento/${idPedido}`);
     } catch (err: any) {
       console.error("Erro ao adicionar endereço:", err);
       alert(

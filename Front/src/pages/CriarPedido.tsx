@@ -194,7 +194,7 @@ export default function CriarPedido() {
       alert("Pedido e histórico criados com sucesso!");
       setItensCarrinho([]);
       setIdCarrinho(null);
-      navigate(`/pagamento/${idPedidoCriado}`);
+      navigate(`/adicionar-endereco/${idPedidoCriado}`);
     } catch (err) {
       console.error("Erro ao finalizar pedido ou criar histórico:", err);
       alert("Erro ao finalizar pedido.");

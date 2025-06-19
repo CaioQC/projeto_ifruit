@@ -26,7 +26,7 @@ function App() {
           ----------- Fluxo cliente ---------------
           <Route path="/" element={<Signup />} />
           <Route path="/signin" element={<Login />} />
-          <Route path="/adicionar-endereco" element={<Endereco />} />
+          <Route path="/adicionar-endereco/:idPedido" element={<Endereco />} />
           <Route path="/criar-pedido" element={<CriarPedido />} />
           <Route path="/pagamento/:idPedido" element={<AdicionarPagamento />} />
           <Route path="/pedido/:id" element={<VisualizarPedido />} />
