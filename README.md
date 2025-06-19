@@ -20,16 +20,12 @@ Antes de iniciar, você precisará ter o [Node.js](https://nodejs.org/) instalad
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/CaioQC/projeto_ifruit.git
+   git clone --branch front/back https://github.com/CaioQC/projeto_ifruit.git
 
 2. **Confira se está na Branch correta:**
 
    ```bash
-   git checkout
-
-   Caso não esteja na branch auth
-
-   git checkout auth
+   Verifique se está na branch chamada front/back
 
 3. **Instale as dependências:**
 
