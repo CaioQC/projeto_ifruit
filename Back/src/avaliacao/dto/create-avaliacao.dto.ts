@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsString,
   IsInt,
@@ -13,23 +14,27 @@ export class CreateAvaliacaoDto {
   @IsNumber({}, { message: 'id_cliente precisa ser um número de id válido' })
   @IsNotEmpty({ message: 'id_cliente é um campo obrigatório.' })
   @IsInt({ message: 'id_cliente deve ser um número inteiro.' })
+  @ApiProperty()
   id_cliente: number;
 
   @IsNumber({}, { message: 'id_produto precisa ser um número de id válido' })
   @IsNotEmpty({ message: 'id_produto é campo obrigatório.' })
   @IsInt({ message: 'O número do id_produto deve ser um inteiro.' })
+  @ApiProperty()
   id_produto: number;
 
   @IsString({ message: 'descricao deve ser uma string' })
   @MaxLength(500, {
     message: 'A descricao deve conter no máximo 500 caracteres.',
   })
+  @ApiProperty()
   descricao: string;
 
   @IsInt({ message: 'nota deve ser um inteiro.' })
   @Min(0)
   @Max(5)
   @IsNotEmpty({ message: 'nota é campo obrigatório.' })
+  @ApiProperty()
   nota: number;
 
   @IsDateString(
@@ -37,5 +42,6 @@ export class CreateAvaliacaoDto {
     { message: 'data_avaliacao deve ser uma date string ISO 8601 válida.' },
   )
   @IsNotEmpty({ message: 'data_avaliacao é campo obrigatório.' })
+  @ApiProperty()
   data_avaliacao: string;
 }

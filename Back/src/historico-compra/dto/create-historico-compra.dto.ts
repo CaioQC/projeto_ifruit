@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { IsDateString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateHistoricoCompraDto {
@@ -6,6 +7,7 @@ export class CreateHistoricoCompraDto {
     { message: 'Este campo deve ser um número do id de um cliente válido.' },
   )
   @IsNotEmpty({ message: 'Este campo é obrigatório.' })
+  @ApiProperty()
   id_cliente: number;
 
   @IsNumber(
@@ -13,6 +15,7 @@ export class CreateHistoricoCompraDto {
     { message: 'Este campo deve ser um número do id de um pedido válido.' },
   )
   @IsNotEmpty({ message: 'Este campo é obrigatório.' })
+  @ApiProperty()
   id_pedido: number;
 
   @IsDateString(
@@ -20,5 +23,6 @@ export class CreateHistoricoCompraDto {
     { message: 'data_compra deve ser uma date string ISO 8601 válida.' },
   )
   @IsNotEmpty({ message: 'Este campo é obrigatório.' })
+  @ApiProperty()
   data_compra: string;
 }
