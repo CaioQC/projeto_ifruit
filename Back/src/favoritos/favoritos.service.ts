@@ -65,6 +65,13 @@ export class FavoritosService {
     }
   }
 
+  async findByClienteId(id_cliente: number) {
+    return this.favoritoRepository.find({
+      where: { cliente: { id: id_cliente } },
+      relations: ['cliente', 'produto'],
+    });
+  }
+
   async update(id_favorito: number, dto: UpdateFavoritoDto) {
     try {
       const favorito = await this.favoritoRepository.findOneBy({ id_favorito });

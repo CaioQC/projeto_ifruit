@@ -39,6 +39,12 @@ export class FavoritosController {
     return this.favoritosService.findOne(+id);
   }
 
+  @Get('cliente/:id')
+  async findByCliente(@Param('id') id: string) {
+    const id_cliente = Number(id);
+    return this.favoritosService.findByClienteId(id_cliente);
+  }
+
   @Patch(':id')
   update(
     @Param('id') id: string,

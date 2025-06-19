@@ -168,15 +168,15 @@ Content-Type: application/json
 
 ###4. Criar produto
 POST http://localhost:3000/produto
-Authorization: Bearer <Token>
+Authorization: Bearer <>
 Content-Type: application/json
 
 {
-  "nome": "Laranja",
-  "descricao":"Fruta cítrica e rica em vitamina C",
-  "preco": 8,
+  "nome": "Banana",
+  "descricao":"Banana prata",
+  "preco": 4,
   "quantidade": 100,
-  "categoria":"Frutas cítricas",
+  "categoria":"Frutas boa pra massa muscular",
   "id_loja": 3
 }
 

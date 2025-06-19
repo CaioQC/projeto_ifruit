@@ -119,6 +119,6 @@ export class AuthService {
       role: user.role, // já é UserRole enum
     };
 
-    return { accessToken: this.jwtService.sign(payload), id:user.id };
+    return { access_token: this.jwtService.sign(payload), id:user.id, role:user.role };
   }
 }

@@ -91,4 +91,15 @@ export class HistoricoCompraService {
       console.error(error);
     }
   }
+
+  async findByClienteId(id_cliente: number) {
+    try {
+      return this.historicoCompraRepository.find({
+        where: { cliente: { id: id_cliente } },
+        relations: ['cliente', 'pedido'],
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

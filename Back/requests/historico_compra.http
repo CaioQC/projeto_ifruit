@@ -10,7 +10,7 @@ Content-Type: application/json
 
 { 
     "quantidade": 1,
-    "id_cleiente": 1,
+    "id_cliente": 1,
     "data_compra": 1
 }
 

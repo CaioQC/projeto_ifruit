@@ -1,5 +1,6 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
+  width: 50%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -40,3 +41,453 @@
 .read-the-docs {
   color: #888;
 }
+
+
+/*--------- Pagina de cadastro ---------*/
+.signup-form {
+  max-width: 400px;
+  margin: 4rem auto;
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.signup-form h1 {
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  font-size: 1.8rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  min-height: 42px;
+  text-align: left;
+  color: #333; /* Texto escuro para visibilidade */
+}
+
+.input:focus {
+  outline: none;
+  border-color: #646cff;
+  background-color: #fff;
+  color: #333; /* Mantém o texto escuro no foco */
+}
+
+select.input {
+  /* For consistent dropdown appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #646cff 50%),
+    linear-gradient(135deg, #646cff 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 25px) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+  padding-right: 2.5rem;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  color: #333; /* Cor do texto escura para dropdown */
+}
+
+select.input option {
+  background-color: #fff;
+  color: #333;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.85rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #646cff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.submit-button:hover {
+  background-color: #535bf2;
+}
+
+
+/*--------- Pagina de login ---------*/
+
+.login-form {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2.5rem 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.login-form h1 {
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  font-size: 1.8rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  min-height: 42px;
+  text-align: left;
+  color: #333;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #646cff;
+  background-color: #fff;
+  color: #333;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.85rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #646cff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.submit-button:hover {
+  background-color: #535bf2;
+}
+
+.signup-link {
+  margin-top: 1rem;
+  background: none;
+  border: none;
+  color: #646cff;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+/*--------- Pagina de adicionar pagamento ---------*/
+
+/* Fundo com gradiente suave */
+.payment-form {
+  max-width: 400px;
+  margin: 4rem auto;
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.payment-form h1 {
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  font-size: 1.8rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  min-height: 42px;
+  text-align: left;
+  color: #333;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #646cff;
+  background-color: #fff;
+  color: #333;
+}
+
+select.input {
+  /* Para dropdown igual */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #646cff 50%),
+    linear-gradient(135deg, #646cff 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 25px) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+  padding-right: 2.5rem;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+select.input option {
+  background-color: #fff;
+  color: #333;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.85rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #646cff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.submit-button:hover {
+  background-color: #535bf2;
+}
+
+/*--------- Pagina de visualizar pedido ---------*/
+
+.pedido-container {
+  max-width: 1120px;
+  margin: 4rem auto;
+  background: #fff;
+  padding: 3rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+.pedido-container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.pedido-container ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.pedido-container ul li {
+  padding: 1rem 1.25rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  box-shadow: inset 0 0 5px #e0e0e0;
+}
+
+.pedido-container ul li strong {
+  color: #646cff;
+}
+
+.history-button {
+  width: 100%;
+  padding: 0.85rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #646cff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.history-button:hover {
+  background-color: #535bf2;
+}
+
+/* Mensagens loading e erro já usadas antes */
+.loading-text,
+.error-text {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1.2rem;
+  border-radius: 12px;
+}
+
+.loading-text {
+  color: #333;
+}
+
+.error-text {
+  color: #d9534f;
+  background-color: #f8d7da;
+  border: 1px solid #f5c2c7;
+}
+
+/* --------- Página de Histórico de Pedidos --------- */
+.historico-container {
+  /* max-width: 1120px; */
+  width: 100%;
+  margin: 4rem auto;
+  background: #fff;
+  padding: 3rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+.historico-container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.historico-container ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.historico-container ul li {
+  padding: 1rem 1.25rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  box-shadow: inset 0 0 5px #e0e0e0;
+}
+
+.historico-container ul li strong {
+  color: #646cff;
+}
+
+/*--------- Pagina de favoritos ---------*/
+.favoritos-container {
+  max-width: 900px; /* aumentar um pouco */
+  margin: 3rem auto; /* dar mais margem */
+  padding: 2.5rem 3rem; /* mais padding */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.favoritos-container h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 1.8rem;
+  text-align: center;
+  color: #4a148c; /* roxo escuro */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.favoritos-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.favorito-item {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1.3rem 1.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.3s ease;
+  background: #fafafa;
+}
+
+.favorito-item:hover {
+  box-shadow: 0 4px 12px rgba(74, 20, 140, 0.3);
+  background: #f3e5f5;
+}
+
+.favorito-info {
+  max-width: 85%;
+}
+
+.favorito-info p {
+  margin: 0.3rem 0;
+}
+
+.favorito-info .nome-produto {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #6a1b9a;
+}
+
+.favorito-info .preco-produto {
+  font-size: 1.1rem;
+  color: #2e7d32; /* verde */
+  font-weight: 600;
+}
+
+.favorito-info .data-favorito {
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .favorito-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .favorito-info {
+    max-width: 100%;
+  }
+}
+

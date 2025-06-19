@@ -17,23 +17,23 @@ export default function Login() {
       const res = await axios.post("/auth/signin", form);
       const token = res.data.access_token;
       const id = res.data.id;
-      const role = res.data.role; // pega o role retornado
+      const role = res.data.role;
 
       localStorage.setItem("id_cliente", id);
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
 
       alert("Login realizado!");
+      console.log("Login success:", { id, token, role });
 
-      // Navegar baseado na role
       if (role === "MANAGER") {
-        navigate("/visualizar-loja"); // rota para dados da loja
+        navigate("/produtos");
       } else if (role === "USER") {
-        navigate("/adicionar-endereco"); // rota para adicionar endereço
-      } else if (role === "DELIVER") {
-        navigate("/dashboard-entregador"); // rota para entregador, por exemplo
+        navigate("/criar-pedido");
+      } else if (role === "DELIVERY") {
+        navigate("/dashboard-entregador");
       } else {
-        navigate("/"); // fallback para rota padrão
+        navigate("/");
       }
     } catch (err) {
       alert("Erro ao logar.");
@@ -42,29 +42,37 @@ export default function Login() {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Login</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="login-form">
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
         <input
           name="email"
           placeholder="Email"
+          value={form.email}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="input"
         />
         <input
           name="senha"
           type="password"
           placeholder="Senha"
+          value={form.senha}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="input"
         />
-        <button
-          type="submit"
-          className="w-full bg-green-600 text-white py-2 rounded"
-        >
+        <button type="submit" className="submit-button">
           Entrar
         </button>
       </form>
+
+      {/* Botão para ir para cadastro */}
+      <button
+        type="button"
+        className="signup-link"
+        onClick={() => navigate("/")}
+      >
+        Ainda não tem conta? Cadastre-se
+      </button>
     </div>
   );
 }

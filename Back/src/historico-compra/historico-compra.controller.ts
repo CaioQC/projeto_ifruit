@@ -39,6 +39,11 @@ export class HistoricoCompraController {
     return this.historicoCompraService.findOne(+id);
   }
 
+  @Get('usuario/:id')
+    findByCliente(@Param('id') id: string) {
+    return this.historicoCompraService.findByClienteId(+id);
+  }
+
   @Patch(':id')
   update(
     @Param('id') id: string,
