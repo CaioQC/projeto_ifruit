@@ -31,7 +31,7 @@ export default function Login() {
       } else if (role === "USER") {
         navigate("/criar-pedido");
       } else if (role === "DELIVERY") {
-        navigate("/dashboard-entregador");
+        navigate("/buscar-pedido");
       } else {
         navigate("/");
       }

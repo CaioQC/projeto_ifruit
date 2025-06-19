@@ -15,6 +15,8 @@ import Favoritos from "./pages/Favoritos";
 import Historico from "./pages/Historico";
 import LojaPerfil from "./pages/Loja";
 import EstoqueLoja from "./pages/EstoqueLoja";
+import BuscarPedidosEntregador from "./pages/BuscarPedidosEntregador";
+import PedidosEntregador from "./pages/PedidosEntregador";
 
 function App() {
   return (
@@ -35,6 +37,9 @@ function App() {
         <Route path="/informacao-loja" element={<LojaPerfil />} />
         <Route path="/estoque/:id" element={<EstoqueLoja />} />
 
+        ----------- Fluxo Entregador ---------------
+        <Route path="/buscar-pedido" element={<BuscarPedidosEntregador />} />
+        <Route path="/entregador/pedido/:idPedido" element={<PedidosEntregador />} />
 
           <Route path="/produtos" element={<Produtos />} />
           <Route path="/carrinho" element={<Carrinho />} />

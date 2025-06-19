@@ -34,7 +34,7 @@ export class PedidoController {
 
   @Get(':id')
   @UseGuards(AuthGuard('jwt'), RolesGuard)
-  @Roles(UserRole.USER)
+  @Roles(UserRole.USER, UserRole.DELIVERY)
   findOne(@Param('id') id: string) {
     return this.pedidoService.findOne(+id);
   }

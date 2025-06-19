@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
   Controller,
   Get,
@@ -8,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { EnderecoService } from './endereco.service';
 import { CreateEnderecoDto } from './dto/create-endereco.dto';
@@ -36,6 +36,13 @@ export class EnderecoController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.enderecoService.findOne(+id);
+  }
+
+   @Get('cliente/:idCliente')
+  async getEnderecosByClienteId(
+    @Param('idCliente', ParseIntPipe) idCliente: number,
+  ) {
+    return await this.enderecoService.findByClienteId(idCliente);
   }
 
   @Patch(':id')

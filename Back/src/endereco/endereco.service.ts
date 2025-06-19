@@ -55,6 +55,22 @@ export class EnderecoService {
     }
   }
 
+  async findByClienteId(idCliente: number): Promise<Endereco[]> {
+    try {
+      return await this.enderecoRepository.find({
+        where: {
+          cliente: {
+            id: idCliente,
+          },
+        },
+        relations: ['cliente'],
+      });
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  }
+
   async update(idEndereco: number, dto: UpdateEnderecoDto) {
     try {
       const endereco = await this.enderecoRepository.findOneBy({ idEndereco });

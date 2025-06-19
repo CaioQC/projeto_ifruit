@@ -105,16 +105,23 @@ export class PedidoService {
   }
 
   async update(id_pedido: number, dto: UpdatePedidoDto) {
-    try {
-      const pedido = await this.pedidoRepository.findOneBy({ id_pedido });
-      if (!pedido) return null;
-      this.pedidoRepository.merge(pedido, dto);
+  try {
+    const pedido = await this.pedidoRepository.findOneBy({ id_pedido });
+    if (!pedido) return null;
 
-      return this.pedidoRepository.save(pedido);
-    } catch (error) {
-      console.error(error);
+    // Se recebeu id_status, substitui o campo 'status' pelo objeto com id
+    if (dto.id_status !== undefined) {
+      pedido.status = { id_status: dto.id_status } as Status;
+      delete dto.id_status; // remove do dto para não causar conflito
     }
+
+    this.pedidoRepository.merge(pedido, dto);
+    return await this.pedidoRepository.save(pedido);
+  } catch (error) {
+    console.error(error);
   }
+}
+
 
   async remove(id_pedido: number) {
     try {
