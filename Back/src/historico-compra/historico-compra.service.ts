@@ -102,4 +102,6 @@ export class HistoricoCompraService {
       console.error(error);
     }
   }
+
+  
 }

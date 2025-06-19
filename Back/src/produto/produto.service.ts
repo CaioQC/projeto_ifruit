@@ -61,27 +61,38 @@ export class ProdutoService {
     }
   }
 
-  async update(id: number, dto: UpdateProdutoDto) {
-    try {
-      const Produto = await this.produtoRepository.findOneBy({ idProduto: id });
-      if (!Produto) return null;
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      this.repository.merge(Produto, dto);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      return this.repository.save(Produto);
-    } catch (error) {
-      console.error(error);
+
+    //procurando produtos de uma determinada loja
+    async findByLojaId(idLoja: number) {
+      try {
+        return this.produtoRepository.find({
+          where: { loja: { id: idLoja } },
+          relations: ['loja'],
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
+
+
+  async update(id: number, dto: UpdateProdutoDto) {
+  try {
+    const produto = await this.produtoRepository.findOneBy({ idProduto: id });
+    if (!produto) return null;
+    this.produtoRepository.merge(produto, dto);
+    return this.produtoRepository.save(produto);
+  } catch (error) {
+    console.error(error);
   }
+}
 
   async remove(id: number) {
-    try {
-      const Produto = await this.produtoRepository.findOneBy({ idProduto: id });
-      if (!Produto) return null;
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      return this.repository.remove(Produto);
-    } catch (error) {
-      console.error(error);
-    }
+  try {
+    const produto = await this.produtoRepository.findOneBy({ idProduto: id });
+    if (!produto) return null;
+    return this.produtoRepository.remove(produto);
+  } catch (error) {
+    console.error(error);
   }
+}
 }

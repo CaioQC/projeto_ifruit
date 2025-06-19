@@ -22,7 +22,7 @@ export class ProdutoController {
 
   @Post()
   @UseGuards(AuthGuard('jwt'), RolesGuard)
-  @Roles(UserRole.MANAGER ,UserRole.ADMIN)
+  @Roles(UserRole.MANAGER, UserRole.ADMIN)
   create(@Body() createProdutoDto: CreateProdutoDto) {
     return this.produtoService.create(createProdutoDto);
   }
@@ -34,21 +34,28 @@ export class ProdutoController {
 
   @Get(':id')
   @UseGuards(AuthGuard('jwt'), RolesGuard)
-  @Roles(UserRole.DELIVERY ,UserRole.ADMIN)
+  @Roles(UserRole.DELIVERY, UserRole.ADMIN)
   findOne(@Param('id') id: string) {
     return this.produtoService.findOne(+id);
   }
 
+  @Get('/loja/:idLoja')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles(UserRole.MANAGER, UserRole.ADMIN)
+  findByLoja(@Param('idLoja') idLoja: string) {
+    return this.produtoService.findByLojaId(+idLoja);
+  }
+
   @Patch(':id')
   @UseGuards(AuthGuard('jwt'), RolesGuard)
-  @Roles(UserRole.MANAGER ,UserRole.ADMIN, UserRole.DELIVERY)
+  @Roles(UserRole.MANAGER, UserRole.ADMIN, UserRole.DELIVERY)
   update(@Param('id') id: string, @Body() updateProdutoDto: UpdateProdutoDto) {
     return this.produtoService.update(+id, updateProdutoDto);
   }
 
   @Delete(':id')
   @UseGuards(AuthGuard('jwt'), RolesGuard)
-  @Roles(UserRole.MANAGER ,UserRole.ADMIN)
+  @Roles(UserRole.MANAGER, UserRole.ADMIN)
   remove(@Param('id') id: string) {
     return this.produtoService.remove(+id);
   }

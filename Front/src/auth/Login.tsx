@@ -27,7 +27,7 @@ export default function Login() {
       console.log("Login success:", { id, token, role });
 
       if (role === "MANAGER") {
-        navigate("/produtos");
+        navigate("/informacao-loja");
       } else if (role === "USER") {
         navigate("/criar-pedido");
       } else if (role === "DELIVERY") {
