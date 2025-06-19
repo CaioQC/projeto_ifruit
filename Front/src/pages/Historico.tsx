@@ -3,19 +3,33 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../api/axios";
 
-interface HistoricoItem {
-  id_historico_compra: number;
-  cliente: { id: number; nome: string };
-  pedido: {
-    id_pedido: number;
-    valor_total: number;
-    data_pedido: string;
-  };
+interface Produto {
+  nome: string;
+}
+
+interface ItemCarrinho {
+  idItem: number;
+  produto: Produto;
+  quantidade: number;
+  subtotal: number;
+}
+
+interface Carrinho {
+  idCarrinho: number;
+  dataCriacao: string;
+  itens: ItemCarrinho[];
+}
+
+interface Pedido {
+  id_pedido: number;
+  valor_total: number;
+  data_pedido: string;
+  carrinho: Carrinho;
 }
 
 export default function Historico() {
   const { id } = useParams<{ id: string }>();
-  const [historico, setHistorico] = useState<HistoricoItem[]>([]);
+  const [historico, setHistorico] = useState<Pedido[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -29,7 +43,7 @@ export default function Historico() {
 
     const fetchHistorico = async () => {
       try {
-        const response = await axios.get(`/historico-compra/usuario/${id}`, {
+        const response = await axios.get(`/pedido/usuario/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setHistorico(response.data);
@@ -52,10 +66,21 @@ export default function Historico() {
       <h1>Histórico de Pedidos</h1>
       <ul>
         {historico.map((item) => (
-          <li key={item.id_historico_compra}>
-            <p><strong>Pedido #{item.pedido.id_pedido}</strong></p>
-            <p>Valor: R$ {item.pedido.valor_total.toFixed(2)}</p>
-            <p>Data: {new Date(item.pedido.data_pedido).toLocaleDateString()}</p>
+          <li key={item.id_pedido}>
+            <p><strong>Pedido #{item.id_pedido}</strong></p>
+            <p>Valor total: R$ {item.valor_total.toFixed(2)}</p>
+            <p>Data: {new Date(item.data_pedido).toLocaleDateString()}</p>
+
+            <h4>Produtos:</h4>
+            <ul>
+              {item.carrinho.itens.map((produto) => (
+                <li key={produto.idItem}>
+                  <p>Produto: {produto.produto.nome}</p>
+                  <p>Quantidade: {produto.quantidade}</p>
+                  <p>Subtotal: R$ {produto.subtotal.toFixed(2)}</p>
+                </li>
+              ))}
+            </ul>
           </li>
         ))}
       </ul>

@@ -45,6 +45,29 @@ export class PedidoService {
     }
   }
 
+  async findByUsuario(id_usuario: number) {
+  try {
+    return await this.pedidoRepository.find({
+      where: {
+        cliente: {
+          id: id_usuario,
+        },
+      },
+      relations: [
+        'cliente',
+        'carrinho',
+        'carrinho.itens',
+        'carrinho.itens.produto',
+        'entregador',
+        'status',
+      ],
+    });
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
   async create(dto: CreatePedidoDto) {
     try {
       const cliente = await this.clienteRepository.findOneBy({

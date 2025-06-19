@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import {
   Controller,
   Get,
@@ -38,6 +37,11 @@ export class PedidoController {
   @Roles(UserRole.USER)
   findOne(@Param('id') id: string) {
     return this.pedidoService.findOne(+id);
+  }
+
+  @Get('/usuario/:id')
+  findByUsuario(@Param('id') id: number) {
+    return this.pedidoService.findByUsuario(id);
   }
 
   @Patch(':id')
