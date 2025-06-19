@@ -19,10 +19,9 @@ async function bootstrap() {
 
   // Configuração do Swagger
   const config = new DocumentBuilder()
-    .setTitle('API de Pedidos')
-    .setDescription('Documentação da API de pedidos e entregas')
+    .setTitle('API IFruit')
+    .setDescription('Documentação da API criada para a matéria de EXTENSÃO - PROGRAMAÇÃO PARA WEB.')
     .setVersion('1.0')
-    .addTag('pedidos') // opcional
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

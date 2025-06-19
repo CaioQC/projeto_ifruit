@@ -21,7 +21,7 @@ export class Produto {
   @Column()
   descricao: string;
 
-  @Column()
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   preco: number;
 
   @Column()

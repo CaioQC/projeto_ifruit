@@ -158,6 +158,7 @@ export default function EstoqueLoja() {
         <input
           className="input"
           type="number"
+          step="any"
           name="preco"
           placeholder="Preço"
           value={novoProduto.preco}
@@ -208,6 +209,7 @@ export default function EstoqueLoja() {
             <input
               className="input"
               type="number"
+              step="any"
               name="preco"
               value={p.preco}
               onChange={(e) => handleProdutoChange(i, e)}
