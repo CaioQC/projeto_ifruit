@@ -5,7 +5,7 @@
 4. **Dimitri Kael Pires Vieira, UC23100672**
 5. **Erick Tavares Nunes, UC23101665**
 
-### 🎥 Link do vídeo de apresentação: [www.youtube.com](https://nodejs.org/)
+### 🎥 Link do vídeo de apresentação: [www.youtube.com](https://youtu.be/uCd8xgZvHRA)
 <br>
 
 ## ⚙️ Pré-requisitos
